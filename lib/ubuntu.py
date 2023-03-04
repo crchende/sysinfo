@@ -16,7 +16,7 @@ def gaseste_versiune_ubuntu():
     
     v = v.split(":")[1].strip()
     
-    print("DBG:", v)
+    #print("DBG:", v)
     return(v)
     
 
@@ -32,9 +32,7 @@ def gaseste_informatii_memorie():
     b_i = subprocess.run(['free', '-h'], capture_output = True).stdout
     i = b_i.decode('ascii').strip()
     
-    
-    
-    print("DBG:", i)
+    #print("DBG:", i)
     return(i)
     
 
@@ -53,6 +51,6 @@ def gaseste_informatii_cpu():
         
     i = b_i.decode('ascii').strip()
     
-    print("DBG:", i)
+    #print("DBG:", i)
     return(i)
     
