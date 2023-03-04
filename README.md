@@ -1,6 +1,7 @@
 # sysinfo
 
-Rulare aplicatie. Exemplu.
+Configurare .venv si instalare pachete:
+---------------------------------------
 1) activeaza_venv: Incearca sa activeze venv-ul. 
                    Daca nu poate, configureaza venv-ul in directorul .venv si apoi instaleaza flask si flask-bootstrap.
                    La urmatoarea rulare, va activa doar venv-ul.
@@ -9,6 +10,8 @@ Rulare aplicatie. Exemplu.
                       Va porni serverul pe IP: 127.0.0.1 si port: 5011.
                       Acces server din browser: http://127.0.0.1:5011
 
+EXEMPLU:
+---------------------------------------
 cip@cip:sysinfo$ source activeaza_venv 
 SUCCESS: venv was activated.
 
