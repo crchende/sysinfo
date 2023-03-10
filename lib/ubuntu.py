@@ -20,7 +20,7 @@ def gaseste_versiune_ubuntu():
     return(v)
     
 
-def gaseste_informatii_memorie():
+def gaseste_informatii_memorie(formatare=0):
     '''
     Informatiile despre memorie pot fi vizualizate cu 'free -h'
     
@@ -30,8 +30,41 @@ def gaseste_informatii_memorie():
     '''
     
     b_i = subprocess.run(['free', '-h'], capture_output = True).stdout
-    i = b_i.decode('ascii').strip()
+    i = b_i.decode('ascii')
     
+    if formatare ==  1:
+        frmt = "{:7}{:7}{:7}{:7}{:7}{:12}{:8}"
+
+        linii = i.split('\n')
+        
+        cap_tabel = linii[0].split()    
+        ram = linii[1].split()
+        swap = linii[2].split()
+
+        #normalizare output
+        #din cap tabel lipseste primul element - tipul de memorie
+        cap_tabel.insert(0,'')
+        l = len(cap_tabel)
+
+        #luam celelalte linii si le aducem la lungimea capului de tabel
+
+        for m in (ram, swap):
+            l_m = len(m)
+            for i in range(l_m, l):
+                m.append("")
+                
+        #print("DBG", len(cap_tabel), len(ram), len(swap))
+        
+        i = frmt.format(*cap_tabel)
+        sep = '-' * len(i)
+        i += '\n' + sep + '\n'
+ 
+        for m in (ram, swap):
+            ln = frmt.format(*m)
+            i += ln + "\n"
+
+        return i
+
     #print("DBG:", i)
     return(i)
     
