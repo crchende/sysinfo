@@ -21,6 +21,6 @@ RUN .venv/bin/pip install -r app/quickrequirements.txt
 WORKDIR /home/sysinfo/app
 
 # runtime configuration
-EXPOSE 5020
+EXPOSE 5011
 ENTRYPOINT ["./dockerstart.sh"]
 #CMD flask run --host 0.0.0.0 -p 5010
