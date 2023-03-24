@@ -37,12 +37,12 @@ Executie container
 ===================
 Pentru a genera un container din fisierul imagine trebuie executata comanda run:
 
-    sudo docker run --name sysinfo -p 8020:5020 sysinfo:v01 
+    sudo docker run --name sysinfo -p 8020:5011 sysinfo:v01 
     
     Aceasta va crea containerul si va si porni executia acestuia.
     
     Portul pe calculator unde va raspunde serverul din docker este  - 8020
-    Portul in interiorul containerului este                         - 5020.
+    Portul in interiorul containerului este                         - 5011.
 
     Rezultatul executie containerului va fi vizibil in terminalul de unde s-a dat
     comanda.
@@ -66,7 +66,7 @@ Vizualizare containere
     sudo docker ps
 
     CONTAINER ID   IMAGE                            COMMAND              CREATED          STATUS          PORTS                                       NAMES
-    0e9388ac0d7d   sysinfo:v01                      "./dockerstart.sh"   2 hours ago      Up 22 minutes   0.0.0.0:8020->5020/tcp, :::8020->5020/tcp   sysinfo
+    0e9388ac0d7d   sysinfo:v01                      "./dockerstart.sh"   2 hours ago      Up 22 minutes   0.0.0.0:8020->5011/tcp, :::8020->5011/tcp   sysinfo
 
     - vizualizarea tuturor containerelor (inclusiv cele oprite)
 
@@ -74,7 +74,7 @@ Vizualizare containere
     sudo docker ps -a
 
     CONTAINER ID   IMAGE                            COMMAND              CREATED          STATUS                     PORTS                                       NAMES
-    0e9388ac0d7d   sysinfo:v052                     "./dockerstart.sh"   2 hours ago      Exited (0) 6 seconds ago                                               site
+    0e9388ac0d7d   sysinfo:v01                      "./dockerstart.sh"   2 hours ago      Exited (0) 6 seconds ago                                               site
 
 
 
@@ -94,8 +94,8 @@ sudo docker exec -it cchende_sysinfo sh
     
 ~/app $ ps
 PID   USER     TIME  COMMAND
-    1 site      0:02 {flask} /home/sysinfo/sysinfo.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5020 --reload
-    8 site      0:30 /home/sysinfo/sysinfo/.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5020 --reload
+    1 site      0:02 {flask} /home/sysinfo/sysinfo.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5011 --reload
+    8 site      0:30 /home/sysinfo/sysinfo/.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5011 --reload
    11 site      0:00 sh
    17 site      0:00 ps
    
@@ -164,21 +164,20 @@ Executie container de pe Docker Hub.
 Oricine vrea apoi sa ruleze containerul poate sa o faca cu comanda:
 
 ----------------
-    docker run -name <nume> -d -p 8021:5020 <username>/<nume imagine>
+    docker run -name <nume> -d -p 8020:5011 <username>/<nume imagine>
 
 ex:
-    sudo docker run --name cchende_syinfo -d -p 8021:5010 cchende/sysinfo:v01
+    sudo docker run --name cchende_syinfo -d -p 8020:5011 cchende/sysinfo:v01
 
 Aceasta comana va downloada imaginea si va porni executia containerului
 
-TBD
-===============
-Adaugat lista de comenzi docker utile
 
+Lista de comenzi docker utile
+===============
 Creere container:           sudo docker build ...
-Vizualizare imagini         ...
-Vizualizare containere      ...
-Rulare container            ...
-Stop container              ...
-Start container             ...
+Vizualizare imagini         sudo docker images
+Vizualizare containere      sudo docker ps / sudo docker ps -a
+Rulare container            sudo docker run
+Stop container              sudo docker stop
+Start container             sudo docker start
 
