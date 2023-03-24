@@ -1,8 +1,0 @@
-#!/bin/bash
-#LINUX
-export FLASK_APP=sysinfo
-
-#WINDOWS
-#set FLASK_APP=site_distribuitor
-
-flask run -p 5011 --reload
