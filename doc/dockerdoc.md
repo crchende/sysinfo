@@ -174,10 +174,12 @@ Aceasta comana va downloada imaginea si va porni executia containerului
 
 Lista de comenzi docker utile:
 =============================
-        Creere container:           sudo docker build
+        Creere container:            sudo docker build -t <nume>:<tag>
         Vizualizare imagini:         sudo docker images
         Vizualizare containere:      sudo docker ps / sudo docker ps -a
-        Rulare container:            sudo docker run
+        Rulare container:            sudo docker run -name <nume> -p <port PC>:<port Container> <imagine> [-d] # -d pentru a rula in background
         Stop container:              sudo docker stop
         Start container:             sudo docker start
+        Executie shell:              sudo docker exec -it <nume> sh
+        Atasare la container:        sudo docker atach <nume>
 
