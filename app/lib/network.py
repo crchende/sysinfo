@@ -78,10 +78,14 @@ def gaseste_linkuri():
 
     ret = []
 
-    out_bnr = subprocess.run(['ip', '-j', 'link'], capture_output=True).stdout
-    out_str = out_bnr.decode('ascii').strip()
+    try:
+        out_bnr = subprocess.run(['ip', '-j', 'link'], capture_output=True).stdout
+        out_str = out_bnr.decode('ascii').strip()
     
-    out_lst = eval(out_str)
+        out_lst = eval(out_str)
+    except Exception as e:
+        print(e)
+        out_lst = "EROARE executie comanda: 'ip -j link'"
  
     #print(out_lst)
     return out_lst
@@ -109,10 +113,22 @@ def gaseste_adrese():
 
     true = True
 
-    out_bnr = subprocess.run(['ip', '-j', 'address'], capture_output=True).stdout
-    out_str = out_bnr.decode('ascii').strip()
+    try:
+        out_bnr = subprocess.run(['ip', '-j', 'address'], capture_output=True).stdout
+        out_str = out_bnr.decode('ascii').strip()
     
-    out_lst = eval(out_str)
+        out_lst = eval(out_str)
+    except Exception as e:
+        print("Eroare executie comanda 'ip -j address'", e)
+        out_lst = ["Eroare executie comanda 'ip -j address'"]
+        try:
+            out_bnr = subprocess.run(['ip', 'address'], capture_output=True).stdout
+            out_str = out_bnr.decode('ascii').strip()
+            #de procesat, acum intoarcem un sir:
+            out_lst = out_str
+        except Exception as e:
+            print("Eroare executie comanda: 'ip address': ", e)
+            out_lst = "Eroare executie comanda: 'ip address'"
  
     #print("DBG:", out_lst)
     return out_lst

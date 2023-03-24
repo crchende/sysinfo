@@ -11,11 +11,22 @@ def gaseste_versiune_ubuntu():
     return:     versiunea de linux, fara eticheta 'Description:'
     '''
     
-    b_v = subprocess.run(['lsb_release', '-d'], capture_output = True).stdout
-    v = b_v.decode('ascii').strip()
+    v = ""
+    try:
+        b_v = subprocess.run(['lsb_release', '-d'], capture_output = True).stdout
+        v = b_v.decode('ascii').strip()
     
-    v = v.split(":")[1].strip()
-    
+        v = v.split(":")[1].strip()
+    except Exception as e:
+        print("Eroare executie comanda: 'lsb_release -d': ", e)
+        v = "Eroare executie comenzii: 'lab_release -d'"
+        try:
+            b_v = subprocess.run(['cat', '/etc/issue'], capture_output = True).stdout
+            v = b_v.decode('ascii').strip()
+        except Exception as e:
+            print("Eroare si la executia comenzii: 'cat /etc/issue':", e)
+            v = "Eroare si la executia comenzii: 'cat /etc/issue'"
+
     #print("DBG:", v)
     return(v)
     
