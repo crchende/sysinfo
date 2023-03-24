@@ -5,4 +5,4 @@ export FLASK_APP=sysinfo
 #WINDOWS
 #set FLASK_APP=sysinfo
 
-flask run -p 5020 --reload
+flask run -p 5011 --reload
