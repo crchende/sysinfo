@@ -14,8 +14,8 @@ In directorul 'app' rulati comenzile:
                    La urmatoarea rulare, va activa doar venv-ul.
                 
 2) ruleaza_aplicatia: De rulat doar dupa activarea venv-ului. 
-                      Va porni serverul pe IP: 127.0.0.1 si port: 5020.
-                      Acces server din browser: http://127.0.0.1:5020
+                      Va porni serverul pe IP: 127.0.0.1 si port: 5011.
+                      Acces server din browser: http://127.0.0.1:5011
 
 EXEMPLU activare venv si rulare:
 ---------------------------------------
