@@ -172,12 +172,12 @@ ex:
 Aceasta comana va downloada imaginea si va porni executia containerului
 
 
-Lista de comenzi docker utile
-===============
-    Creere container:           sudo docker build ...
-    Vizualizare imagini         sudo docker images
-    Vizualizare containere      sudo docker ps / sudo docker ps -a
-    Rulare container            sudo docker run
-    Stop container              sudo docker stop
-    Start container             sudo docker start
+Lista de comenzi docker utile:
+=============================
+        Creere container:           sudo docker build
+        Vizualizare imagini:         sudo docker images
+        Vizualizare containere:      sudo docker ps / sudo docker ps -a
+        Rulare container:            sudo docker run
+        Stop container:              sudo docker stop
+        Start container:             sudo docker start
 
