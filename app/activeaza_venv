@@ -1,5 +1,6 @@
 # venv-ul se gaseste in directorul parinte: .venv
-source ../.venv/bin/activate
+# source ../.venv/bin/activate
+. ../.venv/bin/activate
 
 # daca comanda de mai sus esueaza, creaza .venv si instaleaza dependintele
 # venv-ul va ramane activat in acest caz
@@ -11,7 +12,8 @@ else
     echo "Trying to create the venv in the folder: .venv"
     python3 -m venv ../.venv
     echo "Activating virtual environment"
-    source ../.venv/bin/activate
+    # source ../venv/bin/activate
+    . ../.venv/bin/activate
     echo "Installing the dependencies"
     pip install flask
     pip install flask-bootstrap
