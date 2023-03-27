@@ -5,6 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                sh cd app
+                sh . ../.venv/bin/activate
                 //sh git clone -l --no-hardlines /home/cip/programare/git/sysinfo
             }
         }
