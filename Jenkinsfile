@@ -6,7 +6,8 @@ pipeline {
             steps {
                 echo 'Building...'
                 sh 'cd app'
-                withPytonEnv(activeaza_venv_jenkins) {
+                sh 'ls -la'
+                withPytonEnv('activeaza_venv_jenkins') {
                     sh 'pwd'
                 }
                 /*
