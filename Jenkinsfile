@@ -9,7 +9,7 @@ pipeline {
                 sh '''
                     pwd;
                     ls -l;
-                    . ./activeaza_venv;
+                    . ./activeaza_venv_jenkins;
                     pytest
                     '''
             }
