@@ -6,8 +6,10 @@ pipeline {
             steps {
                 echo 'Building...'
                 sh '''
+                    cd app;
                     pwd;
                     ls -l;
+                    . .activeaza_venv
                     '''
             }
         }
