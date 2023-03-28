@@ -17,7 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
-                #sh pytest
+                //sh pytest
             }
         }
         stage('Deploy') {
