@@ -5,10 +5,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh 'cd app;
+                sh '''
+                    cd app;
                     pwd;
                     ls -l;
-                    . activeaza_venv'
+                    . activeaza_venv
+                    '''
             }
         }
         stage('Test') {
