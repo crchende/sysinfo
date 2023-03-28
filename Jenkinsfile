@@ -5,12 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                sh '''
-                    cd app
-                    ls -la
-                   '''
-                sh 'ls -la'
-                withPythonEnv('activeaza_venv_jenkins') {
+                dir app
+                sh 'pwd'
+                withPythonEnv(activeaza_venv_jenkins) {
                     sh 'pwd'
                 }
                 /*
