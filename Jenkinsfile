@@ -9,7 +9,7 @@ pipeline {
                     cd app;
                     pwd;
                     ls -l;
-                    . activeaza_venv
+                    . ./activeaza_venv
                     '''
             }
         }
