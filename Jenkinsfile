@@ -16,6 +16,10 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing...'
+                sh '''
+                    . ./activeaza_venv
+                    pytest
+                '''
                 //sh pytest
             }
         }
