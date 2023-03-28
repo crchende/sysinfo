@@ -1,6 +1,6 @@
 # venv-ul se gaseste in directorul parinte: .venv
 # source ../.venv/bin/activate
-. ../.venv/bin/activate
+#. ../.venv/bin/activate
 
 # daca comanda de mai sus esueaza, creaza .venv si instaleaza dependintele
 # venv-ul va ramane activat in acest caz
