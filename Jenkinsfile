@@ -17,8 +17,9 @@ pipeline {
             steps {
                 echo 'Testing...'
                 sh '''
-                    . ./activeaza_venv
-                    pytest
+                    cd app;
+                    . ./activeaza_venv;
+                    pytest;
                 '''
                 //sh pytest
             }
