@@ -5,7 +5,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                dir app
                 sh '''
                     pwd;
                     ls -l;
