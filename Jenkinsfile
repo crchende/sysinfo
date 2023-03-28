@@ -5,6 +5,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
+                sh 'cd app'
+                withPytonEnv(activeaza_venv_jenkins) {
+                    sh 'pwd'
+                }
+                /*
                 sh '''
                     cd app;
                     pwd;
@@ -12,6 +17,7 @@ pipeline {
                     . ./activeaza_venv_jenkins;
                     pytest
                     '''
+                */
             }
         }
         stage('Test') {
