@@ -17,18 +17,6 @@ pipeline {
         
         stage('Testare') {
             parallel {
-                stage('Unit Testing cu pytest') {
-                    agent any
-                    steps {
-                        echo 'Unit testing with Pytest...'
-                        sh '''
-                            cd app;
-                            . ./activeaza_venv;
-                            pytest;
-                        '''
-                    }
-                }
-
                 stage('pylint - calitate cod') {
                     agent any
                     steps {
@@ -46,6 +34,19 @@ pipeline {
                         '''
                     }
                 }
+
+                stage('Unit Testing cu pytest') {
+                    agent any
+                    steps {
+                        echo 'Unit testing with Pytest...'
+                        sh '''
+                            cd app;
+                            . ./activeaza_venv;
+                            pytest;
+                        '''
+                    }
+                }
+
                 /*catch(e) {
                         echo "Codul nu este formatat si organizat corect, conform standardelor Python"
                         echo e.toString()
