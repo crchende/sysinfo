@@ -46,13 +46,13 @@ pipeline {
                         '''
                     }
                 }
-            /*catch(e) {
-                    echo "Codul nu este formatat si organizat corect, conform standardelor Python"
-                    echo e.toString()
-                }*/
-            //{}
+                /*catch(e) {
+                        echo "Codul nu este formatat si organizat corect, conform standardelor Python"
+                        echo e.toString()
+                    }*/
+                //{}
+            }
         }
-
         stage('Deploy') {
             agent any
             steps {
