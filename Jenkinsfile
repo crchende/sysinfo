@@ -32,16 +32,16 @@ pipeline {
                     agent any
                     steps {
                         sh '''
-                            cd app
-                            . ./activeaza_venv
-                            echo '\n\nVerificare lib/*.py cu pylint\n'
-                            pylint lib/*.py
+                            cd app;
+                            . ./activeaza_venv;
+                            echo '\n\nVerificare lib/*.py cu pylint\n';
+                            pylint lib/*.py;
 
-                            echo '\n\nVerificare tests/*.py cu pylint'
-                            pylint
+                            echo '\n\nVerificare tests/*.py cu pylint';
+                            pylint;
 
-                            echo '\n\nVerificare sysinfo.py cu pylint'
-                            pylint sysinfo.py
+                            echo '\n\nVerificare sysinfo.py cu pylint';
+                            pylint sysinfo.py;
                         '''
                     }
                 }
