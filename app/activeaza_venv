@@ -9,5 +9,17 @@ then
     echo "SUCCESS: venv was activated."
 else
     echo "FAIL: cannot activate venv"
+<<<<<<< HEAD
     . ./activeaza_venv_jenkins
+=======
+    echo "Trying to create the venv in the folder: .venv"
+    python3 -m venv ../.venv
+    echo "Activating virtual environment"
+    # source ../venv/bin/activate
+    . ../.venv/bin/activate
+    echo "Installing the dependencies"
+    pip install flask
+    pip install flask-bootstrap
+    pip install pytest
+>>>>>>> a531f9278ceb6e1d0dd39e222d0e6916cc8a1256
 fi

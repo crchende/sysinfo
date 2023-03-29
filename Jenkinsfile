@@ -9,15 +9,19 @@ pipeline {
                     cd app;
                     pwd;
                     ls -l;
-                    . ./activeaza_venv;
-                    pytest
+                    . ./activeaza_venv
                     '''
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                sh pytest
+                sh '''
+                    cd app;
+                    . ./activeaza_venv;
+                    pytest;
+                '''
+                //sh pytest
             }
         }
         stage('Deploy') {
