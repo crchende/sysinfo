@@ -39,11 +39,14 @@ pipeline {
                         echo "Codul nu este formatat si organizat corect, conform standardelor Python"
                         echo e.toString()
                     }
+                }
             }
         }
+
         stage('Deploy') {
+            agent any
             steps {
-                echo 'Deploying...'
+                echo 'IN lucru ! ...'
             }
         }
     }
