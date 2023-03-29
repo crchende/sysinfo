@@ -1,8 +1,9 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('Build') {
+            agent any
             steps {
                 echo 'Building...'
                 sh '''
@@ -13,15 +14,31 @@ pipeline {
                     '''
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-                sh '''
-                    cd app;
-                    . ./activeaza_venv;
-                    pytest;
-                '''
-                //sh pytest
+        stage('Testare') {
+            paralel {
+                stages {
+                    stage('Unit Testing cu pytest') {
+                        agent any
+                        steps {
+                            echo 'Unit testing with Pytest...'
+                            sh '''
+                                cd app;
+                                . ./activeaza_venv;
+                                pytest;
+                            '''
+                        }
+                    }
+                    try {
+                        stage('pylint - calitate cod') {
+                            agent any
+                            steps {
+                                pylint
+                            }
+                        }
+                    } catch(e) {
+                        echo "Codul nu este formatat si organizat corect, conform standardelor Python"
+                        echo e.toString()
+                    }
             }
         }
         stage('Deploy') {
