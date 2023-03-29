@@ -14,42 +14,43 @@ pipeline {
                     '''
             }
         }
+        /*
         stage('Testare') {
-            parallel {
-                stage('Unit Testing cu pytest') {
-                    agent any
-                    steps {
-                        echo 'Unit testing with Pytest...'
-                        sh '''
-                            cd app;
-                            . ./activeaza_venv;
-                            pytest;
-                        '''
-                    }
+            parallel {*/
+            stage('Unit Testing cu pytest') {
+                agent any
+                steps {
+                    echo 'Unit testing with Pytest...'
+                    sh '''
+                        cd app;
+                        . ./activeaza_venv;
+                        pytest;
+                    '''
                 }
+            }
 
-                stage('pylint - calitate cod') {
-                    agent any
-                    steps {
-                        sh '''
-                            cd app;
-                            . ./activeaza_venv;
-                            echo '\n\nVerificare lib/*.py cu pylint\n';
-                            pylint lib/*.py;
+            stage('pylint - calitate cod') {
+                agent any
+                steps {
+                    sh '''
+                        cd app;
+                        . ./activeaza_venv;
+                        echo '\n\nVerificare lib/*.py cu pylint\n';
+                        pylint lib/*.py;
 
-                            echo '\n\nVerificare tests/*.py cu pylint';
-                            pylint;
+                        echo '\n\nVerificare tests/*.py cu pylint';
+                        pylint;
 
-                            echo '\n\nVerificare sysinfo.py cu pylint';
-                            pylint sysinfo.py;
-                        '''
-                    }
+                        echo '\n\nVerificare sysinfo.py cu pylint';
+                        pylint sysinfo.py;
+                    '''
                 }
-                /*catch(e) {
+            }
+            /*catch(e) {
                     echo "Codul nu este formatat si organizat corect, conform standardelor Python"
                     echo e.toString()
                 }*/
-            }
+            //}
         }
 
         stage('Deploy') {
