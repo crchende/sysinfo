@@ -31,7 +31,17 @@ pipeline {
                 stage('pylint - calitate cod') {
                     agent any
                     steps {
-                        sh 'pylint'
+                        sh '''
+                            cd app
+                            echo '\n\nVerificare lib/*.py cu pylint\n'
+                            pylint lib/*.py
+
+                            echo '\n\nVerificare tests/*.py cu pylint'
+                            pylint
+
+                            echo '\n\nVerificare sysinfo.py cu pylint'
+                            pylint sysinfo.py
+                        '''
                     }
                 }
                 /*catch(e) {
