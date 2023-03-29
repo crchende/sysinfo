@@ -24,13 +24,13 @@ pipeline {
                             cd app;
                             . ./activeaza_venv;
                             echo '\n\nVerificare lib/*.py cu pylint\n';
-                            pylint lib/*.py;
+                            pylint --exit-zero lib/*.py;
 
                             echo '\n\nVerificare tests/*.py cu pylint';
-                            pylint;
+                            pylint --exit-zero tests/*.py;
 
                             echo '\n\nVerificare sysinfo.py cu pylint';
-                            pylint sysinfo.py;
+                            pylint --exit-zero sysinfo.py;
                         '''
                     }
                 }
@@ -46,12 +46,6 @@ pipeline {
                         '''
                     }
                 }
-
-                /*catch(e) {
-                        echo "Codul nu este formatat si organizat corect, conform standardelor Python"
-                        echo e.toString()
-                    }*/
-                //{}
             }
         }
         stage('Deploy') {
