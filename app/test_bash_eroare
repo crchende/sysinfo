@@ -1,0 +1,9 @@
+ls asdf
+if [ $? -eq 1 ]
+then
+    echo "Avem eroare"
+else
+    echo "rulare: ls ."
+    ls .
+    echo "Valoare returnata:" $?
+fi
