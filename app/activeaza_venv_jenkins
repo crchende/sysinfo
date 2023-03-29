@@ -7,3 +7,4 @@ echo "Installing the dependencies"
 pip install flask
 pip install flask-bootstrap
 pip install pytest
+pip install pylint
