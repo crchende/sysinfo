@@ -16,29 +16,27 @@ pipeline {
         }
         stage('Testare') {
             parallel {
-                stages {
-                    stage('Unit Testing cu pytest') {
+                stage('Unit Testing cu pytest') {
+                    agent any
+                    steps {
+                        echo 'Unit testing with Pytest...'
+                        sh '''
+                            cd app;
+                            . ./activeaza_venv;
+                            pytest;
+                        '''
+                    }
+                }
+                try {
+                    stage('pylint - calitate cod') {
                         agent any
                         steps {
-                            echo 'Unit testing with Pytest...'
-                            sh '''
-                                cd app;
-                                . ./activeaza_venv;
-                                pytest;
-                            '''
+                            sh 'pylint'
                         }
                     }
-                    try {
-                        stage('pylint - calitate cod') {
-                            agent any
-                            steps {
-                                sh 'pylint'
-                            }
-                        }
-                    } catch(e) {
-                        echo "Codul nu este formatat si organizat corect, conform standardelor Python"
-                        echo e.toString()
-                    }
+                } catch(e) {
+                    echo "Codul nu este formatat si organizat corect, conform standardelor Python"
+                    echo e.toString()
                 }
             }
         }
