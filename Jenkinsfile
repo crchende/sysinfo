@@ -27,17 +27,17 @@ pipeline {
                         '''
                     }
                 }
-                try {
-                    stage('pylint - calitate cod') {
-                        agent any
-                        steps {
-                            sh 'pylint'
-                        }
+
+                stage('pylint - calitate cod') {
+                    agent any
+                    steps {
+                        sh 'pylint'
                     }
-                } catch(e) {
+                }
+                /*catch(e) {
                     echo "Codul nu este formatat si organizat corect, conform standardelor Python"
                     echo e.toString()
-                }
+                }*/
             }
         }
 
