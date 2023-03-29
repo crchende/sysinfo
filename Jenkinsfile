@@ -15,7 +15,7 @@ pipeline {
             }
         }
         stage('Testare') {
-            paralel {
+            parallel {
                 stages {
                     stage('Unit Testing cu pytest') {
                         agent any
