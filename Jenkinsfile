@@ -18,7 +18,7 @@ pipeline {
                 echo 'Testing...'
                 sh '''
                     cd app;
-                    . ./activeaza_venv_jenkins;
+                    . ../.venv/bin/activate;
                     pytest;
                 '''
                 //sh pytest
