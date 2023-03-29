@@ -32,7 +32,7 @@ pipeline {
                         stage('pylint - calitate cod') {
                             agent any
                             steps {
-                                pylint
+                                sh 'pylint'
                             }
                         }
                     } catch(e) {
