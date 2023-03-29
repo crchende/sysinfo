@@ -9,7 +9,7 @@ pipeline {
                     cd app;
                     pwd;
                     ls -l;
-                    . ./activeaza_venv
+                    . ./activeaza_venv_jenkins
                     '''
             }
         }
@@ -18,7 +18,7 @@ pipeline {
                 echo 'Testing...'
                 sh '''
                     cd app;
-                    . ./activeaza_venv;
+                    . ../.venv/bin/activate;
                     pytest;
                 '''
                 //sh pytest
