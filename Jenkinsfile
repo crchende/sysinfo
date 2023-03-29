@@ -33,6 +33,7 @@ pipeline {
                     steps {
                         sh '''
                             cd app
+                            . ./activeaza_venv
                             echo '\n\nVerificare lib/*.py cu pylint\n'
                             pylint lib/*.py
 
