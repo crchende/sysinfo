@@ -3,7 +3,7 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent any
+            //agent any
             steps {
                 echo 'Building...'
                 sh '''
@@ -20,7 +20,7 @@ pipeline {
             parallel {
          */
         stage('pylint - calitate cod') {
-            agent any
+            //agent any
             steps {
                 sh '''
                     cd app;
@@ -38,7 +38,7 @@ pipeline {
         }
 
         stage('Unit Testing cu pytest') {
-            agent any
+            //agent any
             steps {
                 echo 'Unit testing with Pytest...'
                 sh '''
@@ -51,7 +51,7 @@ pipeline {
         /*    }
         }*/
         stage('Deploy') {
-            agent any
+            //agent any
             steps {
                 echo 'IN lucru ! ...'
             }
