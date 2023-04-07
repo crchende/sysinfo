@@ -22,5 +22,5 @@ WORKDIR /home/sysinfo/app
 
 # runtime configuration
 EXPOSE 5011
-ENTRYPOINT ["./app/dockerstart.sh"]
+ENTRYPOINT ["./dockerstart.sh"]
 #CMD flask run --host 0.0.0.0 -p 5010
