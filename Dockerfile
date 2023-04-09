@@ -14,6 +14,7 @@ USER sysinfo
 WORKDIR /home/sysinfo/
 
 COPY app app
+COPY dockerstart.sh dockerstart.sh
 
 RUN python -m venv .venv
 RUN .venv/bin/pip install -r app/quickrequirements.txt
