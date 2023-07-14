@@ -26,4 +26,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      
+      - name: Verifica fisierele din aplicatie
+        run: |
+          pwd
+          ls -la
 
