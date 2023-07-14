@@ -31,4 +31,13 @@ jobs:
         run: |
           pwd
           ls -la
+          
+      - name: Instalare dependinte
+        run: |
+          python -m venv .venv
+          pip install -r app/quickrequirements.txt
+          cd app
+          pwd
+          ls -la
+          
 
