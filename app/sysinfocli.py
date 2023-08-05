@@ -1,5 +1,5 @@
-import lib.network as network
-import lib.ubuntu as ubuntu
+import app.lib.network as network
+import app.lib.ubuntu as ubuntu
 
 def creaza_meniu_principal():
     '''

@@ -1,37 +1,37 @@
 import subprocess
 import re
 
+'''
+Functie gaseste_rute:
 
+OS suportat: Linux
+Verificat pe Ubuntu 20.04
+
+Se executa comanda route -n si se preia rezultatul.
+Din text-ul rezultat se creaza o lista de dictionare. 
+Numarul de elemente din lista va fi egal cu numarul de rute.
+Pentru fiecare ruta, avem un dictionar cu chei date de parametrii rutei:
+    - Destination
+    - Gateway
+    - Genmask
+    - Flags
+    - Metric
+    - Ref
+    - Use
+    - Iface 
+
+parametrii: -
+
+return: lista de dictionare
+        pentru fiecare ruta se creeaza un dictionar cu cheile de mai sus    
+'''
 def gaseste_rutele():
-    '''
-    OS suportat: Linux
-    Verificat pe Ubuntu 20.04
-    
-    Se executa comanda route -n si se preia rezultatul.
-    Din text-ul rezultat se creaza o lista de dictionare. 
-    Numarul de elemente din lista va fi egal cu numarul de rute.
-    Pentru fiecare ruta, avem un dictionar cu chei date de parametrii rutei:
-        - Destination
-        - Gateway
-        - Genmask
-        - Flags
-        - Metric
-        - Ref
-        - Use
-        - Iface 
-    
-    parametrii: -
-    
-    return: lista de dictionare
-            pentru fiecare ruta se creeaza un dictionar cu cheile de mai sus    
-    '''
-    
     ret = []
 
     out_bin = subprocess.run(['route', '-n'], capture_output=True).stdout
     out_asc = out_bin.decode('ascii')
     
-    # procesare text returnat de comanda 'route -n'
+    #procesare text returnat de comanda 'route -n'
     out_lst = out_asc.split("\n")
     
     lst_chei = out_lst[1].split()
@@ -42,7 +42,7 @@ def gaseste_rutele():
         d = {}
         lst_rand = out_lst[i].split()
         if len(lst_rand) < len(lst_chei):
-            print("WARNING: rand", i, lst_rand)
+            print("WARNING: gaseste_rute - rand gol:", i, lst_rand)
             continue
         else:
             pass
@@ -56,26 +56,26 @@ def gaseste_rutele():
     #print("DBG:", ret)
     return ret
     
+'''
+Functie: gaseste_linkuri:
 
+OS suportat: Linux
+Verificat pe Ubuntu 20.04
+
+Se executa comanda 'ip link' si se preia rezultatul.
+Din text-ul rezultat se creaza o lista de dictionare. 
+Numarul de elemente din lista va fi egal cu numarul de interfete.
+Pentru fiecare interfata, vom avea in lista un dictionar cu parametrii si 
+valorile pentru fiecare parametru.
+
+parametrii: -
+
+return: lista de dictionare
+        pentru fiecare link se creeaza un dictionar cu chei - numele 
+        parametrilor link-ului din ip link si valori - valorile acestor 
+        parametrii.  
+'''    
 def gaseste_linkuri():
-    '''
-    OS suportat: Linux
-    Verificat pe Ubuntu 20.04
-    
-    Se executa comanda 'ip link' si se preia rezultatul.
-    Din text-ul rezultat se creaza o lista de dictionare. 
-    Numarul de elemente din lista va fi egal cu numarul de interfete.
-    Pentru fiecare interfata, vom avea in lista un dictionar cu parametrii si 
-    valorile pentru fiecare parametru.
-    
-    parametrii: -
-    
-    return: lista de dictionare
-            pentru fiecare link se creeaza un dictionar cu chei - numele 
-            parametrilor link-ului din ip link si valori - valorile acestor 
-            parametrii.  
-    '''    
-
     ret = []
 
     try:
@@ -90,25 +90,26 @@ def gaseste_linkuri():
     #print(out_lst)
     return out_lst
 
-def gaseste_adrese():
-    '''
-    OS suportat: Linux
-    Verificat pe Ubuntu 20.04
-    
-    Se executa comanda 'ip -j address' si se preia rezultatul.
-    Din text-ul rezultat se creaza o lista de dictionare. 
-    Numarul de elemente din lista va fi egal cu numarul de interfete.
-    Pentru fiecare interfata, vom avea in lista un dictionar cu parametrii si 
-    valorile pentru fiecare parametru.
-    
-    parametrii: -
-    
-    return: lista de dictionare
-            pentru fiecare adresa se creeaza un dictionar cu chei
-            numele parametrilor din comanda ip address si cu valori, valorile
-            acestora.    
-    '''    
+'''
+Functie gaseste_adrese:
 
+OS suportat: Linux
+Verificat pe Ubuntu 20.04
+
+Se executa comanda 'ip -j address' si se preia rezultatul.
+Din text-ul rezultat se creaza o lista de dictionare. 
+Numarul de elemente din lista va fi egal cu numarul de interfete.
+Pentru fiecare interfata, vom avea in lista un dictionar cu parametrii si 
+valorile pentru fiecare parametru.
+
+parametrii: -
+
+return: lista de dictionare
+        pentru fiecare adresa se creeaza un dictionar cu chei
+        numele parametrilor din comanda ip address si cu valori, valorile
+        acestora.    
+'''  
+def gaseste_adrese():
     ret = []
 
     true = True
@@ -133,9 +134,17 @@ def gaseste_adrese():
     #print("DBG:", out_lst)
     return out_lst
 
+'''
+Functie genereaza_tabela_ruteL
 
+Formateaza dictionarul de rute returnat de functia 'gaseste_rute'
+si-l prezinta sub o forma mai simplificata, pentru a putea fi afisat mai 
+usor.
+'''
 def genereaza_tabela_rute(rute, *param):
-    ret = []
+    lret = []
+    # Functia care returneaza rutele are mai multi parametrii pentru fiecare ruta
+    # 
     chei = rute[0].keys()
     
     l_param = []
@@ -145,7 +154,7 @@ def genereaza_tabela_rute(rute, *param):
     elif param == ("all"):
         l_param = list(chei)
         
-    ret.append(l_param)
+    lret.append(l_param)
             
     for r in rute:
         r_lst = []
@@ -153,7 +162,12 @@ def genereaza_tabela_rute(rute, *param):
             r_lst.append(r[c])
 
         #print("DBG:", r_lst)
-        ret.append(r_lst)
+        lret.append(r_lst)
+
+    ret = "<pre>\n"
+    for el in lret:
+        ret += str(el) + "\n"
+    ret += "</pre>"
         
     #print("DBG:", ret)
     return ret
