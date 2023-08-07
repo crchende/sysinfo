@@ -65,3 +65,16 @@ EXEMPLU pagina web - versiunea v0.02 -
 ## Exemplu pipeline Jenkins (conform fisierului Jenkins din repository-ul sysinfo)
 ![image](https://github.com/crchende/sysinfo/assets/57460107/8fdaa372-44ee-409b-855c-053e78baf800)
 
+
+## Reprezentari grafice
+* Pachetul matplotlib pune la dispozitie o metoda de a face reprezentari grafice
+* O aplicatie concretea pentru informatii de sistem, pot fi grafice cu utilizarea memoriei, a procesorului, retelei etc.
+* Pentru simplitate aplicatia curenta genereaza valorile si afiseaza graficul unei functii de grad 2: **y = x*x**
+    * valorile sunt discrete, x in {-10, -9, ... 9, 10}
+    * matplotlib poate desena punctele sau un grafic continuu pe baza acestor puncte
+ 
+Exemplu pagina web cu grafice:
+------------------------------
+* sunt mai multe grafice in pagina, captura cuprinde doar doua reprezentari cu puncte, cu culori si caractere diferite:
+![image](https://github.com/crchende/sysinfo/assets/57460107/02c977f7-16b4-48c2-9747-3c6a3885af48)
+
