@@ -72,7 +72,19 @@ EXEMPLU pagina web - versiunea v0.02 -
 * Pentru simplitate aplicatia curenta genereaza valorile si afiseaza graficul unei functii de grad 2: **y = x*x**
     * valorile sunt discrete, x in {-10, -9, ... 9, 10}
     * matplotlib poate desena punctele sau un grafic continuu pe baza acestor puncte
- 
+
+### BUG:
+Aplicatia poate da crash cu eroarea:
+
+  [<matplotlib.lines.Line2D object at 0x7ff7d72e5c00>] <class 'list'>
+  /home/cip/programare/git/sysinfo/app/grafice/exemplu_func_grad_2.py:65: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
+  Un workaround poate fi utilizare modulului subproces pentru a genera graficele.
+  (EXERCITIU)
+
+  Totusi la primul apel merge si asa si uneori pagina poate fi accesata de mai multe ori.
+  
+
+
 Exemplu pagina web cu grafice:
 ------------------------------
 * sunt mai multe grafice in pagina, captura cuprinde doar doua reprezentari cu puncte, cu culori si caractere diferite:
