@@ -7,7 +7,6 @@ pipeline {
             steps {
                 echo 'Building...'
                 sh '''
-                    cd app;
                     pwd;
                     ls -l;
                     . ./activeaza_venv_jenkins
@@ -23,7 +22,6 @@ pipeline {
             agent any
             steps {
                 sh '''
-                    cd app;
                     . ./activeaza_venv;
                     echo '\n\nVerificare lib/*.py cu pylint\n';
                     pylint --exit-zero lib/*.py;
@@ -42,7 +40,6 @@ pipeline {
             steps {
                 echo 'Unit testing with Pytest...'
                 sh '''
-                    cd app;
                     . ./activeaza_venv;
                     pytest;
                 '''
