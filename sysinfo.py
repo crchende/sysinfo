@@ -2,6 +2,7 @@ from flask import Flask, url_for
 
 from app.lib import network
 from app.lib import ubuntu
+from app.grafice.exemplu_func_grad_2 import valori_x, valori_y, genereaza_grafice
 
 print('sysinfo')
 
@@ -40,6 +41,12 @@ def index():
     ret += "\nRUTE:\n" + str(rute_scurt) + "\n"
     
     ret += "\nAdrese IP:\n" + str(dict_adrese) + "\n"
+
+    ret += "\n\nExemplu reprezentare grafica - functie de grad 2: y = x*x.\n"
+    ret += "Graficul este doar pentru a exemplifica o metoda de afisare grafica\n"
+    ret += "Folosind metoda prezentata, se pot afisa grafice referitoare la sitemul de operare cum ar fi:\n"
+    ret += " - graficul de utiliare a memoriei in timp, a procesorului etc"
+    ret += "Link: <a href=" + url_for("grafic_x_patrat") + ">Grafice functie grad 2</a>" + "<br/>"
     
     ret += "</pre>"
     
@@ -97,4 +104,28 @@ def info_retea_adrese():
     ret += "<pre>"
     ret += str(dict_adrese)
     ret += "</pre>"
+    return ret
+
+@app.route("/grafic_x_patrat", methods=['GET'])
+def grafic_x_patrat():
+    genereaza_grafice(valori_x, valori_y, "static/imagini")
+    #t1 = threading.Thread(target=genereaza_grafice, args = (valori_x, valori_y, "static/imagini"))
+    #t1.start()
+    #t1.join()
+    ret = f"<a href={url_for('index')}>acasa</a><br/>"
+    
+    ret += "valori x: " + str(valori_x) + "<br/>"
+    ret += "valori y = x*x: " + str(valori_y) + "<br/>"
+
+    ret += '<br><b>BUG</b><br>'
+    ret += 'matplotlib nu functioneaza bine daca nu este utilizat in thread-ul prinicipal<br>'
+    ret += 'La primul apel merge dar la urmatoarele apeluri poate strica aplicatia - "crash"'
+    ret += 'Vezi sugestia de fix/workaround din README.md<br><br>'
+    
+    ret += f'<img src={url_for("static", filename="imagini/afisare_cu_punct.png")}>' + "<br/>"
+    ret += f'<img src={url_for("static", filename="imagini/afisare_cu_steluta.png")}>' + "<br/>"
+    ret += f'<img src={url_for("static", filename="imagini/afisare_cu_x.png")}>' + "<br/>"
+    ret += f'<img src={url_for("static", filename="imagini/grafic_continuu_v1.png")}>' + "<br/>"
+    ret += f'<img src={url_for("static", filename="imagini/grafic_continuu_v2.png")}>' + "<br/>"
+    
     return ret
