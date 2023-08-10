@@ -24,7 +24,7 @@ jobs:
 
       - name: Configurare virtual environment. Daca nu exista este creat.
         run: |
-          . .activeaza_venv_jenkins
+          . ./activeaza_venv_jenkins
       
       - name: Verificari statice. Verificare calitate cod cu pylint.
         run: |
