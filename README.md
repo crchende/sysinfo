@@ -6,7 +6,7 @@
 
 1. [Descriere aplicatie](#descriere-aplicatie)
 1. [Descriere versiune](#descriere-versiune)
-   1. [Buguri cunoscute](#buguri)
+   1. [Buguri cunoscute](#probleme-cunoscute)
 1. [Configurare](#configurare)
 1. [Exemple pagina web](#exemple-pagina-web)
 1. [Testare cu pytest](#testare-cu-pytest)
@@ -51,7 +51,9 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
    * rute retea:      'retea/rute'      - URL: 'http://127.0.0.1:5011/retea/rute'
    * retea/interfete: 'retea/interfete' - URL: 'http://127.0.0.1:5011/retea/interfete'
   
-## Probleme/Bug-uri cunoscute
+## Probleme cunoscute
+(Bug-uri)
+
 1. Pagina care afiseaza graficele are o problema cunoscuta. Daca este reincarcata sau accesata de mai multe ori, aplicatia poate da crash cu eroarea:
   [<matplotlib.lines.Line2D object at 0x7ff7d72e5c00>] <class 'list'>
   /home/cip/programare/git/sysinfo/app/grafice/exemplu_func_grad_2.py:65: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
@@ -59,7 +61,6 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
   (EXERCITIU)
   Totusi la primul apel merge si asa si uneori pagina poate fi accesata de mai multe ori.
 
-2. README.md - nu functioneaza link-urile din cuprins
 
 # Configurare
 [cuprins](#cuprins)
