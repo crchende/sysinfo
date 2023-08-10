@@ -31,13 +31,30 @@ jobs:
         run: |
           pwd
           ls -la
-          
+
+      - name: Verificari statice. Verificare calitate cod cu pylint.
+        run: |
+          . ./activeaza_venv;
+          echo '\n\nVerificare app/lib/*.py cu pylint\n'
+          pylint --exit-zero app/lib/*.py
+
+          echo '\n\nVerificare tests/*.py cu pylint'
+          pylint --exit-zero app/tests/*.py
+
+          echo '\n\nVerificare sysinfo.py cu pylint'
+          pylint --exit-zero sysinfo.py
+
+
       - name: Instalare dependinte
         run: |
-          python -m venv .venv
-          pip install -r app/quickrequirements.txt
-          cd app
-          pwd
+          python3 -m venv .venv
+          pip install -r quickrequirements.txt
           ls -la
+          
+      - name: TESTARE. Unittest cu pytest
+        run: |
+          . ./activeaza_venv
+          pytest
+      
           
 
