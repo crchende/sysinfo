@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  build_and_test:
+  Clonare_cod_Buildare_Testare:
     runs-on: ubuntu-latest
     
     steps:
@@ -27,7 +27,7 @@ jobs:
           . ./activeaza_venv_jenkins
       
       # Este necesara activarea venv in fiecare step
-      - name: Verificari statice. Verificare calitate cod cu pylint.
+      - name: VERIFICARI STATICE. Verificare calitate cod cu pylint.
         run: |
           . ./activeaza_venv;
           echo '\n\nVerificare app/lib/*.py cu pylint\n'
@@ -39,19 +39,29 @@ jobs:
           echo '\n\nVerificare sysinfo.py cu pylint'
           pylint --exit-zero sysinfo.py
           
-      - name: TESTARE. Unittest cu pytest
+      - name: TESTARE. Unit test cu pytest
         run: |
           . ./activeaza_venv
-          pytest
-          
-  test:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Testare cu pytest
-        run: |
-          . ./activeaza_venv
-          pytest
-      
-          
+          pytest      
+
+# Un alt job, va rula pe alt runner.
+# Ar trebui facut checkout ca apoi sa se poata executa pasii din acest job
+#
+# De studiat - cum putem face un job sa ruleze folosind 'ceva' care a fost facut intr-un job anterior.
+#
+# De exemplu: avem un prim job de care depind celelalte - cel care face checkout si creaza venv-ul
+# Dupa incheierea cu succes a acestui job, am putea incerca rularea in paralel a doua job-uri:
+# - testare cu pylint
+# - testare cu pytest
+# (de studiat daca este posibil si de implementat daca merge)
+#
+#  test:
+#    runs-on: ubuntu-latest
+#    
+#    steps:
+#      - name: Testare cu pytest
+#        run: |
+#          . ./activeaza_venv
+#          pytest
+              
 
