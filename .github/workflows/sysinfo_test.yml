@@ -10,34 +10,58 @@ on:
   workflow_dispatch:
   
 jobs:
-  build:
+  Clonare_cod_Buildare_Testare:
     runs-on: ubuntu-latest
     
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      
       - name: Verifica fisierele din aplicatie
         run: |
           pwd
           ls -la
-          
-      - name: Instalare dependinte
+
+      - name: Configurare virtual environment. Daca nu exista este creat. Instalare dependinte
         run: |
-          python -m venv .venv
-          pip install -r app/quickrequirements.txt
-          cd app
-          pwd
-          ls -la
+          . ./activeaza_venv_jenkins
+      
+      # Este necesara activarea venv in fiecare step
+      - name: VERIFICARI STATICE. Verificare calitate cod cu pylint.
+        run: |
+          . ./activeaza_venv;
+          echo '\n\nVerificare app/lib/*.py cu pylint\n'
+          pylint --exit-zero app/lib/*.py
+
+          echo '\n\nVerificare tests/*.py cu pylint'
+          pylint --exit-zero app/tests/*.py
+
+          echo '\n\nVerificare sysinfo.py cu pylint'
+          pylint --exit-zero sysinfo.py
           
+      - name: TESTARE. Unit test cu pytest
+        run: |
+          . ./activeaza_venv
+          pytest      
+
+# Un alt job, va rula pe alt runner.
+# Ar trebui facut checkout ca apoi sa se poata executa pasii din acest job
+#
+# De studiat - cum putem face un job sa ruleze folosind 'ceva' care a fost facut intr-un job anterior.
+#
+# De exemplu: avem un prim job de care depind celelalte - cel care face checkout si creaza venv-ul
+# Dupa incheierea cu succes a acestui job, am putea incerca rularea in paralel a doua job-uri:
+# - testare cu pylint
+# - testare cu pytest
+# (de studiat daca este posibil si de implementat daca merge)
+#
+#  test:
+#    runs-on: ubuntu-latest
+#    
+#    steps:
+#      - name: Testare cu pytest
+#        run: |
+#          . ./activeaza_venv
+#          pytest
+              
 
