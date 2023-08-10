@@ -62,7 +62,7 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
 2. README.md - nu functioneaza link-urile din cuprins
 
 # Configurare
-
+[cuprins](#cuprins)
 Configurare .venv si instalare pachete
 
 In directorul 'app' rulati comenzile:
@@ -105,7 +105,7 @@ In directorul 'app' rulati comenzile:
 
 
 # Testare cu pytest
-
+[cuprins](#cuprins)
 O parte din functiile din biblioteca de functii a aplicatie:
 * directorul lib, fisierele:
   * ubuntu.py
@@ -118,13 +118,14 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 
 # Verificare statica cu pylint
-
+[cuprins](#cuprins)
 * **pylint** - pachet python folosit la testarea calitatii codului (spatii, nume variabile, variabile neutilizate etc.)
 * in cazul de fata, problemele returnate de pylint doar sunt afisate, nu sunt considerate erori
 
 
 
 # Reprezentari grafice
+[cuprins](#cuprins)
 * Pachetul matplotlib pune la dispozitie o metoda de a face reprezentari grafice
 * O aplicatie concretea pentru informatii de sistem, pot fi grafice cu utilizarea memoriei, a procesorului, retelei etc.
 * Pentru simplitate aplicatia curenta genereaza valorile si afiseaza graficul unei functii de grad 2: **y = x*x**
@@ -140,6 +141,7 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 
 # DevOps CI
+[cuprins](#cuprins)
 - CI = Continuous Integration
 
 ## Exemplu executie pipeline Jenkins
@@ -150,5 +152,6 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 
 # Bibliografie:
+[cuprins](#cuprins)
 - [Github Actions](https://docs.github.com/en/actions)
 
