@@ -2,9 +2,9 @@ name: SYSINFO-TEST
 
 on:
   push:
-    branches: [ "main", "github_actions" ]
+    branches: [ "devel" ]
   pull_request:
-    branches: [ "main", "github_actions"]
+    branches: [ "devel" ]
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
