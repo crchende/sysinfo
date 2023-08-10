@@ -6,16 +6,15 @@
 
 1. [Descriere aplicatie](#descriere-aplicatie)
 1. [Descriere versiune](#descriere-versiune)
-   1. [Buguri cunoscute](#buguri)
+   1. [Buguri cunoscute](#probleme-cunoscute)
 1. [Configurare](#configurare)
 1. [Exemple pagina web](#exemple-pagina-web)
-1. [Testare cu pytest](#test)
 1. [Testare cu pytest](#testare-cu-pytest)
 1. [Verificare statica. pylint - calitate cod](#verificare-statica-cu-pylint)
-1. [Reprezentari grafice](#test)
-1. [DevOps](#test)
-   1. [Pipeline Jenkins](#test)
-   1. [Workflow GitHub Actions](#test)
+1. [Reprezentari grafice](#reprezentari-grafice)
+1. [DevOps](#devops-ci)
+   1. [Pipeline Jenkins](#exemplu-executie-pipeline-jenkins)
+   1. [Workflow GitHub Actions](#exemplu-executie-workflow-in-github-actions)
 1. [Bibliografie](#bibliografie)
 
 # Descriere aplicatie
@@ -52,7 +51,9 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
    * rute retea:      'retea/rute'      - URL: 'http://127.0.0.1:5011/retea/rute'
    * retea/interfete: 'retea/interfete' - URL: 'http://127.0.0.1:5011/retea/interfete'
   
-## Probleme/Bug-uri cunoscute
+## Probleme cunoscute
+(Bug-uri)
+
 1. Pagina care afiseaza graficele are o problema cunoscuta. Daca este reincarcata sau accesata de mai multe ori, aplicatia poate da crash cu eroarea:
   [<matplotlib.lines.Line2D object at 0x7ff7d72e5c00>] <class 'list'>
   /home/cip/programare/git/sysinfo/app/grafice/exemplu_func_grad_2.py:65: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
@@ -60,9 +61,9 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
   (EXERCITIU)
   Totusi la primul apel merge si asa si uneori pagina poate fi accesata de mai multe ori.
 
-2. README.md - nu functioneaza link-urile din cuprins
 
 # Configurare
+[cuprins](#cuprins)
 
 Configurare .venv si instalare pachete
 
@@ -106,11 +107,12 @@ In directorul 'app' rulati comenzile:
 
 
 # Testare cu pytest
+[cuprins](#cuprins)
 
 O parte din functiile din biblioteca de functii a aplicatie:
-* directorul lib, fisierele:
-  * ubuntu.py
-  * network.py
+- directorul lib, fisierele:
+  - ubuntu.py
+  - network.py
 au teste de tip 'unit - test' asociate - adica - este apelata functia si se asteapta o anumita valoare.
 Testul compara valoarea obtinuta la apelul functie cu valoarea asteptata si returneaza PASS daca valoarea primita de la functie este cea asteptata si FAIL in caz contrar.
 
@@ -119,13 +121,15 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 
 # Verificare statica cu pylint
+[cuprins](#cuprins)
 
-* **pylint** - pachet python folosit la testarea calitatii codului (spatii, nume variabile, variabile neutilizate etc.)
-* in cazul de fata, problemele returnate de pylint doar sunt afisate, nu sunt considerate erori
+- **pylint** - pachet python folosit la testarea calitatii codului (spatii, nume variabile, variabile neutilizate etc.)
+- in cazul de fata, problemele returnate de pylint doar sunt afisate, nu sunt considerate erori
 
 
 
 # Reprezentari grafice
+[cuprins](#cuprins)
 * Pachetul matplotlib pune la dispozitie o metoda de a face reprezentari grafice
 * O aplicatie concretea pentru informatii de sistem, pot fi grafice cu utilizarea memoriei, a procesorului, retelei etc.
 * Pentru simplitate aplicatia curenta genereaza valorile si afiseaza graficul unei functii de grad 2: **y = x*x**
@@ -141,15 +145,17 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 
 # DevOps CI
+[cuprins](#cuprins)
 - CI = Continuous Integration
 
-## Exemplu Workflow in GitHub Actions
+## Exemplu executie pipeline Jenkins
+![image](https://github.com/crchende/sysinfo/assets/57460107/8fdaa372-44ee-409b-855c-053e78baf800)
+
+## Exemplu executie Workflow in GitHub Actions
 ![image](https://github.com/crchende/sysinfo/assets/57460107/9981d699-aa34-4ec5-aa94-d0284ea93fca)
 
 
-## Exemplu pipeline Jenkins (conform fisierului Jenkins din repository-ul sysinfo)
-![image](https://github.com/crchende/sysinfo/assets/57460107/8fdaa372-44ee-409b-855c-053e78baf800)
-
 # Bibliografie:
+[cuprins](#cuprins)
 - [Github Actions](https://docs.github.com/en/actions)
 
