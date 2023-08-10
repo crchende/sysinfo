@@ -9,13 +9,12 @@
    1. [Buguri cunoscute](#buguri)
 1. [Configurare](#configurare)
 1. [Exemple pagina web](#exemple-pagina-web)
-1. [Testare cu pytest](#test)
 1. [Testare cu pytest](#testare-cu-pytest)
 1. [Verificare statica. pylint - calitate cod](#verificare-statica-cu-pylint)
-1. [Reprezentari grafice](#test)
-1. [DevOps](#test)
-   1. [Pipeline Jenkins](#test)
-   1. [Workflow GitHub Actions](#test)
+1. [Reprezentari grafice](#reprezentari-grafice)
+1. [DevOps](#devops-ci)
+   1. [Pipeline Jenkins](#exemplu-executie-pipeline-jenkins)
+   1. [Workflow GitHub Actions](#exemplu-executie-workflow-in-github-actions)
 1. [Bibliografie](#bibliografie)
 
 # Descriere aplicatie
@@ -143,12 +142,12 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 # DevOps CI
 - CI = Continuous Integration
 
-## Exemplu Workflow in GitHub Actions
+## Exemplu executie pipeline Jenkins
+![image](https://github.com/crchende/sysinfo/assets/57460107/8fdaa372-44ee-409b-855c-053e78baf800)
+
+## Exemplu executie Workflow in GitHub Actions
 ![image](https://github.com/crchende/sysinfo/assets/57460107/9981d699-aa34-4ec5-aa94-d0284ea93fca)
 
-
-## Exemplu pipeline Jenkins (conform fisierului Jenkins din repository-ul sysinfo)
-![image](https://github.com/crchende/sysinfo/assets/57460107/8fdaa372-44ee-409b-855c-053e78baf800)
 
 # Bibliografie:
 - [Github Actions](https://docs.github.com/en/actions)
