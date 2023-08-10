@@ -22,13 +22,13 @@ jobs:
           pwd
           ls -la
 
-      - name: Configurare virtual environment. Daca nu exista este creat.
+      - name: Configurare virtual environment. Daca nu exista este creat. Instalare dependinte
         run: |
           . ./activeaza_venv_jenkins
       
       - name: Verificari statice. Verificare calitate cod cu pylint.
         run: |
-          . ./activeaza_venv;
+          #. ./activeaza_venv;
           echo '\n\nVerificare app/lib/*.py cu pylint\n'
           pylint --exit-zero app/lib/*.py
 
@@ -37,17 +37,10 @@ jobs:
 
           echo '\n\nVerificare sysinfo.py cu pylint'
           pylint --exit-zero sysinfo.py
-
-
-      - name: Instalare dependinte
-        run: |
-          python3 -m venv .venv
-          pip install -r quickrequirements.txt
-          ls -la
           
       - name: TESTARE. Unittest cu pytest
         run: |
-          . ./activeaza_venv
+          #. ./activeaza_venv
           pytest
       
           
