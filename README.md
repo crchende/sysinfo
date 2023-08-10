@@ -63,6 +63,7 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
 
 # Configurare
 [cuprins](#cuprins)
+
 Configurare .venv si instalare pachete
 
 In directorul 'app' rulati comenzile:
@@ -106,10 +107,11 @@ In directorul 'app' rulati comenzile:
 
 # Testare cu pytest
 [cuprins](#cuprins)
+
 O parte din functiile din biblioteca de functii a aplicatie:
-* directorul lib, fisierele:
-  * ubuntu.py
-  * network.py
+- directorul lib, fisierele:
+  - ubuntu.py
+  - network.py
 au teste de tip 'unit - test' asociate - adica - este apelata functia si se asteapta o anumita valoare.
 Testul compara valoarea obtinuta la apelul functie cu valoarea asteptata si returneaza PASS daca valoarea primita de la functie este cea asteptata si FAIL in caz contrar.
 
@@ -119,8 +121,9 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 # Verificare statica cu pylint
 [cuprins](#cuprins)
-* **pylint** - pachet python folosit la testarea calitatii codului (spatii, nume variabile, variabile neutilizate etc.)
-* in cazul de fata, problemele returnate de pylint doar sunt afisate, nu sunt considerate erori
+
+- **pylint** - pachet python folosit la testarea calitatii codului (spatii, nume variabile, variabile neutilizate etc.)
+- in cazul de fata, problemele returnate de pylint doar sunt afisate, nu sunt considerate erori
 
 
 
