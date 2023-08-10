@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  build:
+  build_and_test:
     runs-on: ubuntu-latest
     
     steps:
@@ -41,7 +41,16 @@ jobs:
           
       - name: TESTARE. Unittest cu pytest
         run: |
-          #. ./activeaza_venv
+          . ./activeaza_venv
+          pytest
+          
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Testare cu pytest
+        run: |
+          . ./activeaza_venv
           pytest
       
           
