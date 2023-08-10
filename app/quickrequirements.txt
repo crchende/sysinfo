@@ -1,7 +1,0 @@
-flask
-flask_bootstrap
-flask_mail
-flask_sqlalchemy
-flask_migrate
-flask_wtf
-pytest

@@ -80,9 +80,17 @@ Vizualizare containere
 
 Oprire / pornire container - cu aplicatia din container
 =======================================================
-sudo docker stop site
-sudo docker start site
+    sudo docker stop site
+    sudo docker start site
 
+
+Tratare probleme (Debugging)
+=======================================================
+In cazul in care containerul nu porneste poate fi folosita comanda de mai jos pentru a
+crea un container cu imaginea cu probleme care in loc entrypoint-ul configurat va
+folosi shell ca entrypoint.
+
+    docker run -it --rm --entrypoint sh <image:tag>
 
 
 Inspectare container - conectare la container-ul care ruleaza cu shell
@@ -106,8 +114,8 @@ PID   USER     TIME  COMMAND
 Curatenie - stergere containere / imagini
 =========================================================
 
-sudo docker rm  <container (id, nume)r>
-sudo docker rmi <imagine (id, nume:tag ...)>
+    sudo docker rm  <container (id, nume)r>
+    sudo docker rmi <imagine (id, nume:tag ...)>
 
 
 Adaugare imagine pe Docker Hub.

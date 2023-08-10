@@ -1,0 +1,40 @@
+echo "Trying to create the venv in the folder: .venv"
+python3 -m venv .venv
+echo "Activating virtual environment"
+# source ../venv/bin/activate
+. .venv/bin/activate
+echo "Installing the dependencies"
+
+# pachete instalate individual:
+#pip install flask
+#pip install flask-bootstrap
+#pip install pytest
+#pip install pylint
+
+# sau prin intermediul fisierului de requirements
+pip install -r quickrequirements.txt
+
+# toate pachetele instalate pot fi vazute cu:
+# pip freeze
+# si salvate cu:
+# pip freeze > requirements.txt
+# 
+# DE CE quickrequirements.txt?
+# Packetele principale din quickrequirements depinde de mai multe
+# pachete care sunt automat instalate de pip.
+# Este suficient sa instalam pachetele din quickreqeuirements.
+#
+# pip freeze, intoarce si versiunea instalata.
+# Utilizarea stricta - pachet + versiune se justifica pentru
+# aplicatii care depind de acea versiune.
+#
+# Aplicatia sysinfo este suficient de simpla sa functioneze
+# cu orice versiune a pachetelor din quickrequirements.txt
+# si a celorlalte pachete de care depind primele.
+#
+# Exercitiu: 
+# Rulare comanda:
+#  pip freeze
+# si analiza ouput in comparatie cu quickrequirements.txt
+# pentru a se vedea pachetele extra.
+# 

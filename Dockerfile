@@ -14,11 +14,15 @@ USER sysinfo
 WORKDIR /home/sysinfo/
 
 COPY app app
+COPY dockerstart.sh dockerstart.sh
+COPY pytest.ini pytest.ini
+COPY quickrequirements.txt quickrequirements.txt
+COPY sysinfo.py sysinfo.py
 
-RUN python -m venv .venv
-RUN .venv/bin/pip install -r app/quickrequirements.txt
+RUN python3 -m venv .venv
+RUN .venv/bin/pip install -r quickrequirements.txt
 
-WORKDIR /home/sysinfo/app
+#WORKDIR /home/sysinfo/app
 
 # runtime configuration
 EXPOSE 5011
