@@ -26,9 +26,10 @@ jobs:
         run: |
           . ./activeaza_venv_jenkins
       
+      # Este necesara activarea venv in fiecare step
       - name: Verificari statice. Verificare calitate cod cu pylint.
         run: |
-          #. ./activeaza_venv;
+          . ./activeaza_venv;
           echo '\n\nVerificare app/lib/*.py cu pylint\n'
           pylint --exit-zero app/lib/*.py
 
