@@ -10,8 +10,8 @@ pipeline {
                 sh '''
                     pwd;
                     ls -l;
-                    //. ./activeaza_venv_jenkins
                     '''
+                //. ./activeaza_venv_jenkins
             }
         }
         
