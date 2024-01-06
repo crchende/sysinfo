@@ -1,17 +1,17 @@
 /*Jenkins*/
 pipeline {
-    agent { dockerfile true }
+    agent { any }
 
     stages {
         stage('Build') {
             agent any
             steps {
                 echo 'Building...'
-                //sh '''
-                //    pwd;
-                //    ls -l;
-                //    '''
-                //. ./activeaza_venv_jenkins
+                sh '''
+                    pwd;
+                    ls -l;
+                    . ./activeaza_venv_jenkins
+                    '''
             }
         }
         
