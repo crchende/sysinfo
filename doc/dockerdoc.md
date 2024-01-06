@@ -10,9 +10,9 @@ Cerinte
 =================
 docker sa fie disponibil pe calculator.
 
-Creere container
+Creare container
 =================
-Dupa creerea Dockerfile, in acelasi director cu acest fisier - pentru acest caz
+Dupa crearea Dockerfile, in acelasi director cu acest fisier - pentru acest caz
 site_disribuitor, trebuie executata comanda:
 
     sudo docker build -t sysinfo:v01 .
@@ -90,13 +90,13 @@ In cazul in care containerul nu porneste poate fi folosita comanda de mai jos pe
 crea un container cu imaginea cu probleme care in loc entrypoint-ul configurat va
 folosi shell ca entrypoint.
 
-    docker run -it --rm --entrypoint sh <image:tag>
+    sudo docker run -it --rm --entrypoint sh <image:tag>
 
 
 Inspectare container - conectare la container-ul care ruleaza cu shell
 =======================================================
 
-sudo docker exec -it cchende_sysinfo sh
+    sudo docker exec -it cchende_sysinfo sh
 
     - vizualizare procese pe container (pot fi date si alte comenzi LINUX)
     
@@ -182,7 +182,7 @@ Aceasta comana va downloada imaginea si va porni executia containerului
 
 Lista de comenzi docker utile:
 =============================
-        Creere container:            sudo docker build -t <nume>:<tag>
+        Creare container:            sudo docker build -t <nume>:<tag>
         Vizualizare imagini:         sudo docker images
         Vizualizare containere:      sudo docker ps / sudo docker ps -a
         Rulare container:            sudo docker run -name <nume> -p <port PC>:<port Container> <imagine> [-d] # -d pentru a rula in background
