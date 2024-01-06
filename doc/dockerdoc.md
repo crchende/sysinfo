@@ -94,18 +94,18 @@ folosi shell ca entrypoint.
 
 
 Inspectare container - conectare la container-ul care ruleaza cu shell
-=======================================================
+--
 
     sudo docker exec -it cchende_sysinfo sh
 
     - vizualizare procese pe container (pot fi date si alte comenzi LINUX)
     
-~/app $ ps
-PID   USER     TIME  COMMAND
-    1 site      0:02 {flask} /home/sysinfo/sysinfo.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5011 --reload
-    8 site      0:30 /home/sysinfo/sysinfo/.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5011 --reload
-   11 site      0:00 sh
-   17 site      0:00 ps
+    ~/app $ ps
+    PID   USER     TIME  COMMAND
+        1 site      0:02 {flask} /home/sysinfo/sysinfo.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5011 --reload
+        8 site      0:30 /home/sysinfo/sysinfo/.venv/bin/python /home/sysinfo/sysinfo/.venv/bin/flask run -h 0.0.0.0 -p 5011 --reload
+       11 site      0:00 sh
+       17 site      0:00 ps
    
 (inchiderea terminalului pe container se face cu 'exit')
 
