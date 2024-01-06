@@ -29,4 +29,5 @@ RUN .venv/bin/pip install -r quickrequirements.txt
 
 # runtime configuration
 EXPOSE 5011
-CMD sh
+ENTRYPOINT ["./dockerstart_jenkins.sh"]
+#CMD sh
