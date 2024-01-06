@@ -1,5 +1,9 @@
+import matplotlib
 import matplotlib.pyplot as plt
+import os
 
+if __name__ != "__main__":
+    matplotlib.use("agg")
 # Generare seturi de date cu list comprehension
 valori_x = [a for a in range(-10, 10+1)]
 valori_y = [a*a for a in valori_x]
@@ -15,7 +19,10 @@ valori_y = [a*a for a in valori_x]
         
 '''
 def genereaza_grafice(x, y, locatie_imagini):
+    cale_dir_curent = os.path.abspath(os.path.curdir)
     print("DBG: director salvare imagini:", locatie_imagini)    
+    print("DBG: director curent:", cale_dir_curent)
+    locatie_imagini = os.path.join(cale_dir_curent, locatie_imagini)
     
     #############################
     # afisare cu puncte
@@ -27,7 +34,7 @@ def genereaza_grafice(x, y, locatie_imagini):
     if __name__ == "__main__":
         print("**************************************")
         plt.show() # de comentat daca nu vrem sa se intrerupa executia si sa se afiseze graficul
-    fig1.figure.savefig(f'{locatie_imagini}/afisare_cu_x.png')
+    fig1.figure.savefig(os.path.join(locatie_imagini, 'afisare_cu_x.png'))
     plt.close()
 
     # alta reprezentare a aceluiasi set de date - culoare + forma punct
@@ -36,7 +43,7 @@ def genereaza_grafice(x, y, locatie_imagini):
     # salvare sub forma de jpg
     if __name__ == "__main__":
         plt.show() # de comentat ...
-    fig2.figure.savefig(f'{locatie_imagini}/afisare_cu_steluta.png')
+    fig2.figure.savefig(os.path.join(locatie_imagini, 'afisare_cu_steluta.png'))
     plt.close()
 
     # alta reprezentare a aceluiasi set de date - culoare + forma punct
@@ -45,7 +52,7 @@ def genereaza_grafice(x, y, locatie_imagini):
     # salvare sub forma de jpg
     if __name__ == "__main__":
         plt.show() # de comentat ...
-    fig3.figure.savefig(f'{locatie_imagini}/afisare_cu_punct.png')
+    fig3.figure.savefig(os.path.join(locatie_imagini, 'afisare_cu_punct.png'))
     plt.close()
 
     ##############################
@@ -58,7 +65,7 @@ def genereaza_grafice(x, y, locatie_imagini):
         plt.show()
 
     # apel metoda savefig pentru a salva imaginea intr-un fisier
-    plt.savefig(f'{locatie_imagini}/grafic_continuu_v1.png')
+    plt.savefig(os.path.join(locatie_imagini, 'grafic_continuu_v1.png'))
     plt.close()
     
     # adaugare etichete axe + titlu dar trebuie regenerat graficul ...
@@ -69,7 +76,7 @@ def genereaza_grafice(x, y, locatie_imagini):
     plt.ylabel("X*X")
     if __name__ == "__main__":
         plt.show()
-    plt.savefig(f'{locatie_imagini}/grafic_continuu_v2.png')
+    plt.savefig(os.path.join(locatie_imagini, 'grafic_continuu_v2.png'))
     plt.close()
 
     # functia doar genereaza grafice.

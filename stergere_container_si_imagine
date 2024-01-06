@@ -1,0 +1,4 @@
+sudo docker rm sysinfo2
+sudo docker rmi sysinfo:v02
+sudo docker ps -a
+sudo docker images
