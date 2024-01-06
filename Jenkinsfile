@@ -1,6 +1,7 @@
 /*Jenkins*/
 pipeline {
-    agent { dockerfile true }
+    agent { dockerfile true
+            args "-u root"}
 
     stages {
         stage('Build') {
