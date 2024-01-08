@@ -52,6 +52,11 @@ pipeline {
             agent any
             steps {
                 echo "Build ID: ${BUILD_NUMBER}"
+                echo "Creare imagine docker"
+                sh '''
+                    docker build -t sysinfo:v${BUILD_NUMBER} .
+                    docker create --name sysinfo${BUILD_NUMBER} -p 8020:5011 sysinfo:v${BUILD_NUMBER}
+                '''
             }
         }
     }
