@@ -1,6 +1,6 @@
 /*Jenkins*/
 pipeline {
-    agent { dockerfile true }
+    agent any
 
     stages {
         stage('Build') {
