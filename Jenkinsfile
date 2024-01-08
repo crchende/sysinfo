@@ -51,7 +51,7 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                echo 'IN lucru ! ...'
+                echo BUILD ID: $BUILD_ID
             }
         }
     }
