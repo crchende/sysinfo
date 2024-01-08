@@ -1,10 +1,10 @@
 import logging
 logger = logging.getLogger(__name__)
 
-import lib.ubuntu as ubuntu
+import lib.linux as linux
 
 def test_versiune_os():
-    vos = ubuntu.gaseste_versiune_ubuntu()
+    vos = linux.gaseste_versiune_linux()
 
     if "Ubuntu" in vos:
         logger.info(f"Sistemul de operare este Ubuntu: {vos}")
@@ -14,7 +14,7 @@ def test_versiune_os():
         assert False
 
 def test_informatii_memorie():
-    mem_info = ubuntu.gaseste_informatii_memorie()
+    mem_info = linux.gaseste_informatii_memorie()
 
     if "Mem" in mem_info and "Swap" in mem_info:
         logger.info(f"Gasit informatii memorie:\n{mem_info}")

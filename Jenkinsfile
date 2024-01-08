@@ -42,12 +42,12 @@ pipeline {
                 echo 'Unit testing with Pytest...'
                 sh '''
                     . ./activeaza_venv;
-                    pytest;
+                    flask --app sysinfo test;
+                    
                 '''
             }
         }
-        /*    }
-        }*/
+        
         stage('Deploy') {
             agent any
             steps {

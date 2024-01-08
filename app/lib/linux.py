@@ -1,10 +1,16 @@
 import subprocess
 
-def gaseste_versiune_ubuntu():
+def gaseste_versiune_linux():
     '''
     Versiunea de ubuntu poate fi vazuta cu comenzile:
     cat /etc/issue
     lsb_release -d
+    (cat /etc/os-release)
+    
+    lsb_release - posibil as nu mearga pe toate versiunile de linux
+    si nu merge in docker
+    In caz de eroare se incearca preluarea informatiilor despre sistemul 
+    de operare din /etc/issue.
     
     parametrii: -
     
@@ -12,6 +18,8 @@ def gaseste_versiune_ubuntu():
     '''
     
     v = ""
+    
+    # tratare eroare apel 'lsb_release -b'
     try:
         b_v = subprocess.run(['lsb_release', '-d'], capture_output = True).stdout
         v = b_v.decode('ascii').strip()
@@ -19,7 +27,7 @@ def gaseste_versiune_ubuntu():
         v = v.split(":")[1].strip()
     except Exception as e:
         print("Eroare executie comanda: 'lsb_release -d': ", e)
-        v = "Eroare executie comenzii: 'lab_release -d'"
+        v = "Eroare executie comenzii: 'lsb_release -d'"
         try:
             b_v = subprocess.run(['cat', '/etc/issue'], capture_output = True).stdout
             v = b_v.decode('ascii').strip()
@@ -35,18 +43,24 @@ def gaseste_informatii_memorie(formatare=0):
     '''
     Informatiile despre memorie pot fi vizualizate cu 'free -h'
     
-    parametrii: 
+    Daca functia este apelata cu valoarea 1 sau explicit 'formatare = 1' rezultatul
+    comenzii care afiseaza memoria este preluat si formatat conform specificatiei
+    de formatare din variabila 'frmt'.
+    Intre capul de tabel si date se adauga o linie.
+    
+    parametrii: formatare, cu valoarea implicita 0 - se returneaza datele neformatate
     
     return:     o lista
     '''
     
     b_i = subprocess.run(['free', '-h'], capture_output = True).stdout
-    i = b_i.decode('ascii')
+    ret = b_i.decode('ascii')
     
+    #formatare 'ret' daca functia este apelata cu parametrul formatare = 1
     if formatare ==  1:
-        frmt = "{:7}{:7}{:7}{:7}{:7}{:12}{:8}"
+        frmt = "{:7}{:>8}{:>7}{:>7}{:>7}{:>14}{:>12}"
 
-        linii = i.split('\n')
+        linii = ret.split('\n')
         
         cap_tabel = linii[0].split()    
         ram = linii[1].split()
@@ -66,18 +80,15 @@ def gaseste_informatii_memorie(formatare=0):
                 
         #print("DBG", len(cap_tabel), len(ram), len(swap))
         
-        i = frmt.format(*cap_tabel)
-        sep = '-' * len(i)
-        i += '\n' + sep + '\n'
+        ret = frmt.format(*cap_tabel)
+        sep = '-' * len(ret)
+        ret += '\n' + sep + '\n'
  
         for m in (ram, swap):
             ln = frmt.format(*m)
-            i += ln + "\n"
+            ret += ln + "\n"
 
-        return i
-
-    #print("DBG:", i)
-    return(i)
+    return ret
     
 
 def gaseste_informatii_cpu():
@@ -92,7 +103,8 @@ def gaseste_informatii_cpu():
     c_i = subprocess.run(['cat', '/proc/cpuinfo'], capture_output = True)
     b_i = subprocess.run(['grep', 'name'], capture_output = True, \
         input = c_i.stdout).stdout
-        
+    
+    #Stergere caractere albe (spatii, tab) de la inceput si de la sfarsit - strip()    
     i = b_i.decode('ascii').strip()
     
     #print("DBG:", i)

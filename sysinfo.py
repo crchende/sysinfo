@@ -1,46 +1,41 @@
+import sys
+
 from flask import Flask, url_for
 
 from app.lib import network
-from app.lib import ubuntu
+from app.lib import linux
 from app.grafice.exemplu_func_grad_2 import valori_x, valori_y, genereaza_grafice
 
 print('sysinfo')
-
-dict_rute = network.gaseste_rutele()
-dict_linkuri = network.gaseste_linkuri()
-dict_adrese = network.gaseste_adrese()
-
-rute_scurt = network.genereaza_tabela_rute(dict_rute)
-
-v_ub = ubuntu.gaseste_versiune_ubuntu()
-mem = ubuntu.gaseste_informatii_memorie()
-cpu = ubuntu.gaseste_informatii_cpu()
 
 app = Flask(__name__)
 
 @app.route("/", methods=['GET'])
 def index():
-    ret = ""
-    ret += f"[<a href={url_for('versiune_os')}>Doar Versiunea Sistemului de operare</a>] "
-    ret += f"[<a href={url_for('info_memorie')}>Doar Memoria</a>] "
-    ret += f"[<a href={url_for('info_cpu')}>Doar procesorul</a>] <br>"
+    ret = "<h1>SYSINFO</h1>"
+    ret += "<h3>Varianta simplificata. Codul 'view' (care genereaza paginile web) intr-un singur fisier, fara teamplate-uri, formatare minimala.</h3>"
+    
+    ret += "Sistem de operare: "
+    ret += f"[<a href={url_for('versiune_os')}>Versiune</a>] "
+    ret += f"[<a href={url_for('info_memorie')}>Memorie</a>] "
+    ret += f"[<a href={url_for('info_cpu')}>Procesor</a>] <br>"
 
-    ret += f"[<a href={url_for('info_retea_rute')}>Info retea: rute</a>] "
-    ret += f"[<a href={url_for('info_retea_rute_full')}>Info retea: rute (full)</a>] "
-    ret += f"[<a href={url_for('info_retea_adrese')}>Info retea: adrese</a>] <br>"
+    ret += "Retea: "
+    ret += f"[<a href={url_for('info_retea_rute')}>Rute</a>] "
+    ret += f"[<a href={url_for('info_retea_adrese')}>Adrese</a>] <br>"
 
     ret += "<pre>"
     ret += "Informatii despre sistemul de operare pe care ruleaza aplicatia:\n"
-    ret += "\nVersiune UBUNTU:\n"
-    ret += "\n" + v_ub + "\n"
-    ret += "\nMEMORIE\n" + mem + "\n"
-    ret += "\nNuclee CPU:\n" + cpu + "\n"
+    ret += "\nVersiune linux:\n"
+    ret += "\n" + linux.gaseste_versiune_linux() + "\n"
+    ret += "\nMEMORIE\n" + linux.gaseste_informatii_memorie(formatare = 1) + "\n"
+    ret += "\nNuclee CPU:\n" + linux.gaseste_informatii_cpu() + "\n"
     
     ret += "\n\n\n"
     ret += "Informatii despre retea:\n"
-    ret += "\nRUTE:\n" + str(rute_scurt) + "\n"
+    ret += "\nRUTE:\n" + network.gaseste_rute() + "\n"
     
-    ret += "\nAdrese IP:\n" + str(dict_adrese) + "\n"
+    ret += "\nAdrese IP:\n" + network.gaseste_adrese() + "\n"
 
     ret += "\n\nExemplu reprezentare grafica - functie de grad 2: y = x*x.\n"
     ret += "Graficul este doar pentru a exemplifica o metoda de afisare grafica\n"
@@ -57,7 +52,7 @@ def versiune_os():
     ret = ""
     ret += f"<a href={url_for('index')}>acasa</a>"
     ret += "<pre>"
-    ret += v_ub
+    ret += linux.gaseste_versiune_linux()
     ret += "</pre>"
     return ret
     
@@ -66,7 +61,7 @@ def info_memorie():
     ret = ""
     ret += f"<a href={url_for('index')}>acasa</a>"
     ret += "<pre>"
-    ret += mem
+    ret += linux.gaseste_informatii_memorie(formatare = 1)
     ret += "</pre>"
     return ret
     
@@ -75,7 +70,7 @@ def info_cpu():
     ret = ""
     ret += f"<a href={url_for('index')}>acasa</a>"
     ret += "<pre>"
-    ret += cpu
+    ret += linux.gaseste_informatii_cpu()
     ret += "</pre>"
     return ret
 
@@ -84,25 +79,17 @@ def info_retea_rute():
     ret = ""
     ret += f"<a href={url_for('index')}>acasa</a>"
     ret += "<pre>"
-    ret += str(rute_scurt)
+    ret += str(network.gaseste_rute())
     ret += "</pre>"
     return ret
 
-@app.route("/retea/rute_full", methods=['GET'])
-def info_retea_rute_full():
-    ret = ""
-    ret += f"<a href={url_for('index')}>acasa</a>"
-    ret += "<pre>"
-    ret += str(dict_rute)
-    ret += "</pre>"
-    return ret
 
-@app.route("/retea/interfete", methods=['GET'])
+@app.route("/retea/adrese", methods=['GET'])
 def info_retea_adrese():
     ret = ""
     ret += f"<a href={url_for('index')}>acasa</a>"
     ret += "<pre>"
-    ret += str(dict_adrese)
+    ret += str(network.gaseste_adrese())
     ret += "</pre>"
     return ret
 
@@ -116,11 +103,6 @@ def grafic_x_patrat():
     
     ret += "valori x: " + str(valori_x) + "<br/>"
     ret += "valori y = x*x: " + str(valori_y) + "<br/>"
-
-    ret += '<br><b>BUG</b><br>'
-    ret += 'matplotlib nu functioneaza bine daca nu este utilizat in thread-ul prinicipal<br>'
-    ret += 'La primul apel merge dar la urmatoarele apeluri poate strica aplicatia - "crash"'
-    ret += 'Vezi sugestia de fix/workaround din README.md<br><br>'
     
     ret += f'<img src={url_for("static", filename="imagini/afisare_cu_punct.png")}>' + "<br/>"
     ret += f'<img src={url_for("static", filename="imagini/afisare_cu_steluta.png")}>' + "<br/>"
@@ -129,3 +111,15 @@ def grafic_x_patrat():
     ret += f'<img src={url_for("static", filename="imagini/grafic_continuu_v2.png")}>' + "<br/>"
     
     return ret
+    
+    
+@app.cli.command()
+def test():
+    """
+    Rulare 'unit tests'
+    
+    Apelare pytest din aplicatia systest, cu ajutorul comenzii flask.
+    
+    """
+    import pytest
+    sys.exit(pytest.main(["."]))
