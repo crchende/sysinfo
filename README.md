@@ -99,7 +99,7 @@ In directorul 'app' rulati comenzile:
 
 # EXEMPLE pagina web 
 ## Pagina principala
-![image](https://github.com/crchende/sysinfo/assets/57460107/97f4c5ff-1c12-4ec6-8334-ad1950d8f664)
+![image](https://github.com/crchende/sysinfo/assets/57460107/2c106097-0954-4d6f-82ee-77fa5f052d1f)
 
 ## Vizualizare versiune ubuntu
 ![image](https://github.com/crchende/sysinfo/assets/57460107/0316f339-a277-4418-a1b0-d8ec0f022472)
@@ -117,6 +117,20 @@ au teste de tip 'unit - test' asociate - adica - este apelata functia si se aste
 Testul compara valoarea obtinuta la apelul functie cu valoarea asteptata si returneaza PASS daca valoarea primita de la functie este cea asteptata si FAIL in caz contrar.
 
 Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lista de pachete care trebuie instalate, in fisierul quickrequirements.txt.
+Executia testelor se face cu oricare din comenzile de mai jos, apelate din directorul aplicatiei - *sysinfo*:
+```
+   pytest
+   python -m pytest
+   flask --app sysinfo test
+
+   Ultima commanda este posibila datorita implementarii comenzii cli test in aplicatia sysinfo.
+   Aceasta comanda CLI, apeleaza pytest din program/script:
+       pytest.main(["."])
+   
+   Ultima varianta, desi echivalenta cu primele doua, este mai eleganta.
+   Primele doua apeleaza pytest ca fiind ceva extern aplicatiei. 
+   Aici insa avem optiunea de a se 'autotesta' inclusa in aplicatie.
+```
 
 
 
