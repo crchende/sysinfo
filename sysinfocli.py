@@ -1,5 +1,5 @@
 import app.lib.network as network
-import app.lib.ubuntu as ubuntu
+import app.lib.linux as linux
 
 def creaza_meniu_principal():
     '''
@@ -57,11 +57,11 @@ def creaza_meniu_sistem_operare():
 
     i = "NA"
     if c == 'v':
-        i = ubuntu.gaseste_versiune_ubuntu()
+        i = linux.gaseste_versiune_linux()
     elif c == 'c':
-        i = ubuntu.gaseste_informatii_cpu()        
+        i = linux.gaseste_informatii_cpu()        
     elif c == 'm':
-        i = ubuntu.gaseste_informatii_memorie(formatare = 1)
+        i = linux.gaseste_informatii_memorie(formatare = 1)
 
     if i != "NA":
         print(f'\n{i}\n')
