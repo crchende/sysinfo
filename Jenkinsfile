@@ -51,7 +51,7 @@ pipeline {
         stage('Deploy') {
             agent any
             steps {
-                echo BUILD ID: $BUILD_ID
+                echo $BUILD_ID
             }
         }
     }
