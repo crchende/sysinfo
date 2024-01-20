@@ -3,7 +3,7 @@ name: Build and deploy Python app to Azure Web App - site-distribuitor-v061
 on:
   push:
     branches:
-      - main
+      - avansat_main
   workflow_dispatch:
 
 jobs:
