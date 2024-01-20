@@ -18,9 +18,16 @@ COPY dockerstart.sh dockerstart.sh
 COPY pytest.ini pytest.ini
 COPY quickrequirements.txt quickrequirements.txt
 COPY sysinfo.py sysinfo.py
-RUN mkdir static
-RUN mkdir static/imagini
+COPY config.py config.py
+#RUN mkdir static
+#RUN mkdir static/imagini
+#RUN chmod -R 777 static
+WORKDIR /home/sysinfo/app
+USER root
 RUN chmod -R 777 static
+
+WORKDIR /home/sysinfo
+USER sysinfo
 
 RUN python3 -m venv .venv
 RUN .venv/bin/pip install -r quickrequirements.txt

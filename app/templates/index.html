@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ APPNAME | title }} {% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <style>
+    </style>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<h1>{{APPNAME}}</h1>
+
+{% for el in info_de_afisat %}
+    <pre>{{el}}</pre><br>
+{% endfor %}
+
+{% for el in grafice %} 
+    <img src={{el}}> <br>
+{% endfor %}
+
+{% endblock %}

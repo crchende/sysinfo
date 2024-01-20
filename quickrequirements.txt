@@ -2,4 +2,5 @@ flask
 pytest
 pylint
 matplotlib
+flask-bootstrap
 gunicorn
