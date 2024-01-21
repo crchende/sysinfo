@@ -37,22 +37,30 @@ jobs:
       #      . 
       #      !venv/
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.CLIENTSECRETNAME }}
-          tenant-id: ${{ secrets.TENANTIDSECRETNAME }}
-          subscription-id: ${{ secrets.SUBSCRIPTIONIDSECRETNAME }}
-    
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'sysinfov3'
-          slot-name: 'Production'
-          #publish-profile: ${{ secrets.SYSINFOV3 }}
+            app-name: 'sysinfov3'
+            slot-name: 'Production'
+            publish-profile: ${{ secrets.SYSINFOV3 }}
+
+#  deploy:
+#    runs-on: ubuntu-latest
+#    needs: build
+
+#    steps:
+#      - name: Login to Azure
+#        uses: azure/login@v1
+#        with:
+#          client-id: ${{ secrets.CLIENTSECRETNAME }}
+#          tenant-id: ${{ secrets.TENANTIDSECRETNAME }}
+#          subscription-id: ${{ secrets.SUBSCRIPTIONIDSECRETNAME }}
+#    
+#      - name: 'Deploy to Azure Web App'
+#        uses: azure/webapps-deploy@v2
+#        id: deploy-to-webapp
+#        with:
+#          app-name: 'sysinfov3'
+#          slot-name: 'Production'
+#          #publish-profile: ${{ secrets.SYSINFOV3 }}
