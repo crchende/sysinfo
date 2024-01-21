@@ -41,25 +41,29 @@ Worflow-ul (pipeline-ul) pentru GitHub Actions, in fisierul `.github/workflows/s
 Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il activeaza si ruleaza testele (unit test - cu pytest, verificari statice cu pylint).
 
 # Descriere versiune
-## v0.02 - afisare 'raw' fara formatare. Adaugare link-uri intre pagini si modul generare si afisare grafice.
+## v03. Afisare intr-o forma mai prietenoasa, 
+- folosire template-uri si flask-bootstrap
+- structura mai complexa a aplicatiei
+   - functiile view mutate intr-un blueprint
+   - creare aplicatie in `app/__init__.py` cu ajutorul unei functii `factory function`
+   - utilizare fisier configurare
+- `unittest` cu pytest sub forma unei commenzi cli flask:
+   - `cd` in directorul sysinfo
+   - activare venv: `source activeaza_venv`   
+   - executie teste cu comanda: `flask --app sysinfo test`
 
  * ruta standard '/' - URL: http://127.0.0.1:5011
  * rute in aplicatia WEB pentru:
    * versiune ubuntu: '/vos' - URL: 'http://127.0.0.1:5011/vos',
-   * memorie:         '/mem' -                        .../mem
-   * cpu:             '/cpu' -                        .../cpu
+   * memorie:         '/mem' - URL: 'http://127.0.0.1:5011/mem'
+   * cpu:             '/cpu' - URL: 'http://127.0.0.1:5011/cpu'
    * rute retea:      'retea/rute'      - URL: 'http://127.0.0.1:5011/retea/rute'
    * retea/interfete: 'retea/interfete' - URL: 'http://127.0.0.1:5011/retea/interfete'
   
 ## Probleme cunoscute
 (Bug-uri)
 
-1. Pagina care afiseaza graficele are o problema cunoscuta. Daca este reincarcata sau accesata de mai multe ori, aplicatia poate da crash cu eroarea:
-  [<matplotlib.lines.Line2D object at 0x7ff7d72e5c00>] <class 'list'>
-  /home/cip/programare/git/sysinfo/app/grafice/exemplu_func_grad_2.py:65: UserWarning: Starting a Matplotlib GUI outside of the main thread will likely fail.
-  Un workaround poate fi utilizare modulului subproces pentru a genera graficele.
-  (EXERCITIU)
-  Totusi la primul apel merge si asa si uneori pagina poate fi accesata de mai multe ori.
+--
 
 
 # Configurare
@@ -99,6 +103,15 @@ In directorul 'app' rulati comenzile:
 
 # EXEMPLE pagina web 
 ## Pagina principala
+
+### varianta v03 din branch-ul avansat_main
+- implementare grafica avansata, folosind flask-bootstrap si template-uri
+
+![image](https://github.com/crchende/sysinfo/assets/57460107/95bf735e-832b-4112-a10b-0240c3b1491e)
+
+### varianta v02 din branch-ul simplu_main
+- implementarea grafica simpla in cod dar nu prea prietenoasa pentru utilizator
+
 ![image](https://github.com/crchende/sysinfo/assets/57460107/2c106097-0954-4d6f-82ee-77fa5f052d1f)
 
 ## Vizualizare versiune ubuntu
