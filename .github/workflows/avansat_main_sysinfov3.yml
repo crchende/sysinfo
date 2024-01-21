@@ -28,51 +28,66 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r quickrequirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+      #- name: Zip artifact for deployment
+      #  run: zip release.zip ./* -r
 
-      - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v3
-        with:
-          name: python-app
-          path: |
-            release.zip
-            !venv/
+      #- name: Upload artifact for deployment jobs
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: python-app
+      #    path: |
+      #      release.zip
+      #      !venv/
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: python-app
-
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-
-      
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AF83C87CA377431595D4C3BF42D7AB1A }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6A260A0BF37F4F96967102A2A729A521 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BD1DEFA981A34A0C88DDB6FE9FBD0159 }}
-
+  
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'sysinfov3'
           slot-name: 'Production'
+
+
+  #deploy:
+  #  runs-on: ubuntu-latest
+  #  needs: build
+  #  environment:
+  #    name: 'Production'
+  #    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  #  permissions:
+  #    id-token: write #This is required for requesting the JWT
+
+  #  steps:
+  #    - name: Download artifact from build job
+  #      uses: actions/download-artifact@v3
+  #      with:
+  #        name: python-app
+
+  #    - name: Unzip artifact for deployment
+  #      run: unzip release.zip
+
+      
+  #    - name: Login to Azure
+  #      uses: azure/login@v1
+  #      with:
+  #        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AF83C87CA377431595D4C3BF42D7AB1A }}
+  #        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6A260A0BF37F4F96967102A2A729A521 }}
+  #        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BD1DEFA981A34A0C88DDB6FE9FBD0159 }}
+
+  #    - name: 'Deploy to Azure Web App'
+  #      uses: azure/webapps-deploy@v2
+  #      id: deploy-to-webapp
+  #      with:
+  #        app-name: 'sysinfov3'
+  #        slot-name: 'Production'
           
