@@ -42,12 +42,12 @@ jobs:
     needs: build
 
     steps:
-    #  - name: Login to Azure
-    #    uses: azure/login@v1
-    #    with:
-    #      client-id: ${{ secrets.__clientidsecretname__ }}
-    #      tenant-id: ${{ secrets.__tenantidsecretname__ }}
-    #      subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.clientidsecretname }}
+          tenant-id: ${{ secrets.tenantidsecretname }}
+          subscription-id: ${{ secrets.subscriptionidsecretname }}
     
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -55,4 +55,4 @@ jobs:
         with:
           app-name: 'sysinfov3'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.SYSINFOV3 }}
+          #publish-profile: ${{ secrets.SYSINFOV3 }}
