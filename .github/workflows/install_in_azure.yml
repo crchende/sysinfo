@@ -1,4 +1,4 @@
-name: Build and deploy Python app to Azure Web App - site-distribuitor-v061
+name: sysinfo install in azure
 
 on:
   #push:
