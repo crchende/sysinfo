@@ -1,9 +1,9 @@
 name: sysinfo install in azure
 
 on:
-  #push:
-  #  branches:
-  #    - avansat_main
+  push:
+    branches:
+      - avansat_main
   workflow_dispatch:
 
 jobs:
