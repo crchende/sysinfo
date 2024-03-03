@@ -126,6 +126,7 @@ O parte din functiile din biblioteca de functii a aplicatie:
 - directorul lib, fisierele:
   - ubuntu.py
   - network.py
+  
 au teste de tip 'unit - test' asociate - adica - este apelata functia si se asteapta o anumita valoare.
 Testul compara valoarea obtinuta la apelul functie cu valoarea asteptata si returneaza PASS daca valoarea primita de la functie este cea asteptata si FAIL in caz contrar.
 
