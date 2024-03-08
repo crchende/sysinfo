@@ -24,10 +24,10 @@ Aceasta creeaza o imagine de container care poate fi vizualizata cu comanda:
     ex:
     REPOSITORY                  TAG             IMAGE ID       CREATED       SIZE
     sysinfo                     v01             beadef0060e0   2 hours ago   110MB
-    python                      3.8-alpine      0ccdcbe88eaa   5 days ago    47.5MB
+    python                      3.10-alpine      0ccdcbe88eaa   5 days ago    47.5MB
     
     Avem doua imagini:
-    - imaginea de baza, python:3.8-alpine, folosita pentru a
+    - imaginea de baza, python:3.10-alpine, folosita pentru a
       crea imaginea site_distribuitor
     - imaginea sysinfo, creata pe baza imaginii python, in care se
       creaza venv-ul, se instaleaza pachetele necesare aplicatiei, se copiaza
@@ -80,8 +80,8 @@ Vizualizare containere
 
 Oprire / pornire container - cu aplicatia din container
 =======================================================
-    sudo docker stop site
-    sudo docker start site
+    sudo docker stop sysinfo
+    sudo docker start sysinfo
 
 
 Tratare probleme (Debugging)
