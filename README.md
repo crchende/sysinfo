@@ -65,9 +65,38 @@ Ambele pipeline-uri cloneaza codul, creaza mediul de lucru virtual (venv-ul), il
 # Configurare
 [cuprins](#cuprins)
 
+Clonare repository
+
+Creati spatiul de lucru si clonati aplicatia sysinfo: 
+
+```text   
+   mkdir laborator_scc
+   cd laborator_scc
+   git clone https://github.com/crchende/sysinfo.git
+
+   ********
+   NOTA: INSTALARE dependinte (cu apt)
+
+   sudo apt upgrade
+   sudo apt install net-tools
+   sudo apt install git
+   sudo apt install python3
+   sudo apt install python3-pip
+   sudo apt install python3.10-venv
+
+   # Posibil sa fie sa instalati alt pachet ...-venv. 
+   # Daca comanda de mai sus nu merge, verificati mesajul de eroare din consola.
+   ********
+
+   cd sysinfo
+
+   git checkout avansat_main
+   
+```
+
 Configurare .venv si instalare pachete
 
-In directorul 'app' rulati comenzile:
+In directorul 'sysinfo' rulati comenzile:
 
 1) activeaza_venv: Incearca sa activeze venv-ul. 
                    Daca nu poate, configureaza venv-ul in directorul .venv si apoi instaleaza flask si flask-bootstrap.
@@ -99,12 +128,40 @@ In directorul 'app' rulati comenzile:
 
 # EXEMPLE pagina web 
 ## Pagina principala
+
+Varianta avansat main:
+
+![image](https://github.com/crchende/sysinfo/assets/57460107/a2620e64-98dd-4fdc-9251-0454bc799be9)
+
+
+Varianta simplu_main:
+
 ![image](https://github.com/crchende/sysinfo/assets/57460107/97f4c5ff-1c12-4ec6-8334-ad1950d8f664)
 
-## Vizualizare versiune ubuntu
+## Vizualizare versiune ubuntu 
+
+Varianta simplu_main:
+
 ![image](https://github.com/crchende/sysinfo/assets/57460107/0316f339-a277-4418-a1b0-d8ec0f022472)
 
+# Comutare intre branch-uri: avansat_main si simplu_main
 
+```text
+   git stash
+   git checkout simplu_main
+   source ruleaza_aplicatia
+
+   [Ctrl-C] pentru a opri aplicatia
+
+   git stash
+   git checkout avansat_main
+   source ruleaza_aplicatia
+
+   NOTA:
+   'git stash'   - are rolul de a salva local (in stash) fisierele imagine generate de aplicatie
+                   daca accesati link-ul 'Grafice' din meniu
+                 - fara aceasta comanda 'git checkout' da eroare
+```
 
 # Testare cu pytest
 [cuprins](#cuprins)
@@ -153,6 +210,10 @@ Pentru testare s-a folosit pachetul **pytest** din python. Acesta se afla in lis
 
 ## Exemplu executie Workflow in GitHub Actions
 ![image](https://github.com/crchende/sysinfo/assets/57460107/9981d699-aa34-4ec5-aa94-d0284ea93fca)
+
+Aplicatia poate fi accesata si de pe AZURE
+
+URL: https://sysinfov3.azurewebsites.net
 
 
 # Bibliografie:
