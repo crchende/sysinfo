@@ -12,6 +12,7 @@
 1. [Testare cu pytest](#testare-cu-pytest)
 1. [Verificare statica. pylint - calitate cod](#verificare-statica-cu-pylint)
 1. [Reprezentari grafice](#reprezentari-grafice)
+1. [Utilizare Docker si containerizare alicatie](https://github.com/crchende/sysinfo/blob/main/doc/dockerdoc.md)
 1. [DevOps](#devops-ci)
    1. [Pipeline Jenkins](#exemplu-executie-pipeline-jenkins)
    1. [Workflow GitHub Actions](#exemplu-executie-workflow-in-github-actions)
