@@ -164,7 +164,7 @@ Executia testelor se face cu oricare din comenzile de mai jos, apelate din direc
 
 ## Exemplu executie pipeline Jenkins
 Pentru a se putea executa si ultimul pas din pipeline-ul de Jenkins din acest branch - creare container docker, trebuie ca userul care ruleaza Jenkins sa poata da comenzi de docker, fara sudo + parola.
-Puteti gasi pasii de configurare [pe docs.docker.comm linux-postinstall](https://docs.docker.com/engine/install/linux-postinstall/)
+Puteti gasi pasii de configurare pe [docs.docker.com - linux-postinstall](https://docs.docker.com/engine/install/linux-postinstall/)
 Daca folositi masina virtuala linux, restartati masina dupa ce faceti configuratia.
 
 ![image](https://github.com/crchende/sysinfo/assets/57460107/8fdaa372-44ee-409b-855c-053e78baf800)
