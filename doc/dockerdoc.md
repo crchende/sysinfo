@@ -10,9 +10,9 @@ Cerinte
 =================
 docker sa fie disponibil pe calculator.
 
-Creere container
+Creare container
 =================
-Dupa creerea Dockerfile, in acelasi director cu acest fisier - pentru acest caz
+Dupa crearea Dockerfile, in acelasi director cu acest fisier - pentru acest caz
 site_disribuitor, trebuie executata comanda:
 
     sudo docker build -t sysinfo:v01 .
