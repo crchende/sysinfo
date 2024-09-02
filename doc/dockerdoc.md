@@ -33,7 +33,7 @@ Aceasta creeaza o imagine de container care poate fi vizualizata cu comanda:
       creaza venv-ul, se instaleaza pachetele necesare aplicatiei, se copiaza
       codul aplicatiei - conform Dockerfile
 
-Executie container
+Creare container si executie
 ===================
 Pentru a genera un container din fisierul imagine trebuie executata comanda run:
 
