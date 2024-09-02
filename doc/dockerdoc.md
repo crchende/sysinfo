@@ -10,7 +10,7 @@ Cerinte
 =================
 docker sa fie disponibil pe calculator.
 
-Creare container
+Creare imagine container
 =================
 Dupa crearea Dockerfile, in acelasi director cu acest fisier - pentru acest caz
 site_disribuitor, trebuie executata comanda:
