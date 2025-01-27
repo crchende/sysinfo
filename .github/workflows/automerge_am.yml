@@ -1,6 +1,5 @@
 name: automerge_am
 on:
-  workflow_dispatch:
   pull_request_review:
     types:
       - submitted
@@ -11,20 +10,24 @@ on:
 jobs:
   commands:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - run: merge dev -m "Merging dev to main" --no-ff
-#  automerge_am:
-#    if: github.event.review.state == 'approved'
-#    runs-on: ubuntu-latest
-#    permissions:
-#      contents: write
-#      pull-requests: write
-#    steps:
-#      - uses: actions/checkout@v3
-#      - run: echo "PR merged automatically! hehehe"
-#      - run: echo "Starting automatic merge... dev to main"
-#      - run: |
-#          git checkout origin
-#          git merge dev -m "Merging dev to main" --no-ff
-#      - run: echo "Merge completed!"
+      - run: |
+          git merge dev -m "Merging dev to main" --no-ff
+  # automerge_am:
+  #   if: github.event.review.state == 'approved'
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     contents: write
+  #     pull-requests: write
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - run: echo "PR merged automatically!"
+  #     - run: echo "Starting automatic merge... dev to main"
+  #     - run: |
+  #         git checkout origin
+  #         git merge dev -m "Merging dev to main" --no-ff
+  #     - run: echo "Merge completed!"
