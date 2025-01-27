@@ -20,5 +20,5 @@ jobs:
       - run: echo "Starting automatic merge... dev to main"
       - run: |
           git switch main
-          git merge dev
+          git merge dev -m "Merging dev to main" --no-ff
       - run: echo "Merge completed!"
