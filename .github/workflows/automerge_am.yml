@@ -9,11 +9,11 @@ on:
       - completed
   status: {}
 jobs:
-  local:
+  commands:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: ls -al
+      - run: git status
   automerge_am:
     if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
