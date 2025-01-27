@@ -16,8 +16,4 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - id: merge
-        name: merge
-        uses: "pascalgn/automerge-action@v0.16.4"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - run: echo "PR merged automatically!"
