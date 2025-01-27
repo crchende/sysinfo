@@ -16,4 +16,4 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - run: echo "PR merged automatically!"
+      - run: echo "PR merged automatically! Hehe"
