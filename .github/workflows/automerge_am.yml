@@ -9,6 +9,11 @@ on:
       - completed
   status: {}
 jobs:
+  local:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: ls -al
   automerge_am:
     if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
@@ -17,7 +22,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - run: ls -al
       - run: echo "PR merged automatically! hehehe"
       - run: echo "Starting automatic merge... dev to main"
       - run: |
