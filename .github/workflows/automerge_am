@@ -1,4 +1,4 @@
-name: automerge
+name: automerge_am
 on:
   pull_request_review:
     types:
