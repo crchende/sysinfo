@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-          git merge dev -m "Merging dev to main" --no-ff
+          git checkout dev
   # automerge_am:
   #   if: github.event.review.state == 'approved'
   #   runs-on: ubuntu-latest
