@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: devmasx/merge-branch@master
-        name: Merging PR from dev to master...
+        name: Merging the PR from dev to master...
         with:
           type: now
           from_branch: dev
