@@ -19,5 +19,6 @@ jobs:
       - run: echo "PR merged automatically! hehehe"
       - run: echo "Starting automatic merge... dev to main"
       - run: |
+          git checkout origin
           git merge dev -m "Merging dev to main" --no-ff
       - run: echo "Merge completed!"
