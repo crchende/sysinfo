@@ -17,3 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "PR merged automatically! Hehe"
+      - run: echo "Starting automatic merge... dev to main"
+      - run: |
+          git switch main
+          git merge dev
+      - run: echo "Merge completed!"
