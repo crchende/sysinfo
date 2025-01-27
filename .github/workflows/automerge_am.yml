@@ -16,7 +16,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v3
-      - run: echo "PR merged automatically! hehehe"
+      - run: echo "PR merged automatically!"
       - run: echo "Starting automatic merge... dev to main"
       - run: |
           git checkout origin
