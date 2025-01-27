@@ -20,6 +20,7 @@ jobs:
       - uses: devmasx/merge-branch@master
         with:
           type: now
-          target_branch: uat
+          from_branch: dev
+          target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - run: echo "Merge completed!"
