@@ -23,4 +23,4 @@ jobs:
           from_branch: dev
           target_branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "Merge completed!!!"
+      - run: echo "Merge completed!!!!!!!"
