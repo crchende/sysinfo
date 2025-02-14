@@ -13,9 +13,10 @@
     - inspectare container
     - curatenie - stergere imagini, containere (deoarece ocupa loc pe hard)
     - publicare imagine pe `dockerhub`
-    - lista comenzi utile
+    - [lista comenzi utile](#lista-de-comenzi-docker-utile)
 
 # Containerizarea unei aplicatii
+[Cuprins](#cuprins)
 
 Ne dorim ca aplicatia noastra sa poata fi executata pe diverse calculatoare / servere. Acestea (calculatoarele) pot rula diverse sisteme de operare, cu diverse versiuni si poate fi nevoie de configurare diferita pe fiecare in parte pentru a instala pachetele software de care nevoie aplicatia noastra sa poata fi lansata in executie.
 
@@ -31,6 +32,7 @@ Exemplul de fata se refera la containerizarea unei aplicatii Python (sysinfo) fo
 Pentru mai multe detalii despre ce inseamna containerizare cu setul de unelte de la `Docker` accesati documentatia: https://docs.docker.com/get-started/
 
 # Configurarea necesara pentru containerizare. Fisierul Dockerfile.
+[Cuprins](#cuprins)
 
 In aplicatia pe care vream sa o containerizam, trebuie adaugat un fisier, in care sa descriem ce container de baza folosim, ce vrem sa contina containerul, comenzile necesare pentru a copia in container directoarele si fisierele relevante, ce program sa se porneasca la pornirea containerului.
 
@@ -72,6 +74,7 @@ Continutul acestuia si explicatii (textul comentat cu #):.
         #CMD flask run --host 0.0.0.0 -p 5010
 
 # Instalare unelte docker pe calculator
+[Cuprins](#cuprins)
 
 Setul de unelte de la `docker` sa fie disponibil pe calculator.
 
@@ -85,6 +88,7 @@ Setul de unelte docker, ar trebui sa poata fi instalat usor, folosind `apt`:
 Documentatia indicata la link-ul de mai sus este actualizata de catre compania `docker`. In caz ca comenzile de mai sus nu functioneaza, consultati link-ul.
 
 # Utilizare docker
+[Cuprins](#cuprins)
 
 ## Creare imagine container
 
@@ -254,6 +258,7 @@ Aceasta comana va downloada imaginea si va porni executia containerului
 
 
 ## Lista de comenzi docker utile:
+[Cuprins](#cuprins)
 
         Creere container:            sudo docker build -t <nume>:<tag>
         Vizualizare imagini:         sudo docker images
