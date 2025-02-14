@@ -1,17 +1,93 @@
-Aplicatia poate fi instalata intr-un container docker.
+# Cuprins
 
-Pentru aceasta, este nevoie de fisierul: Dockerfile.
-Acesta contine informatiile de care are nevoie aplicatia docker pentru a crea
-containerul.
+1. [Containerizarea unei aplicatii](#containerizarea-unei-aplicatii)
+1. [Configurarea necesara pentru containerizare. Fisierul Dockerfile.](#configurarea-necesara-pentru-containerizare-fisierul-dockerfile)
+1. [Instalare unelte docker pe calculator](#instalare-unelte-docker-pe-calculator)
+1. [Utilizare docker](#utilizare-docker)
 
-TBD - explicare continut Dockerfile.
+    - creare imagine pentru container (echivalent cu un fel de kit de instalare)
+    - creare container si executia acestuia (kit-ul de mai sus instalat)
+    - vizualizare containere / imagini
+    - oprire / pornire container
+    - tratare probleme (cand avem probleme sa cream, pornim containerul)
+    - inspectare container
+    - curatenie - stergere imagini, containere (deoarece ocupa loc pe hard)
+    - publicare imagine pe `dockerhub`
+    - lista comenzi utile
 
-Cerinte
-=================
-docker sa fie disponibil pe calculator.
+# Containerizarea unei aplicatii
 
-Creare imagine container
-=================
+Ne dorim ca aplicatia noastra sa poata fi executata pe diverse calculatoare / servere. Acestea (calculatoarele) pot rula diverse sisteme de operare, cu diverse versiuni si poate fi nevoie de configurare diferita pe fiecare in parte pentru a instala pachetele software de care nevoie aplicatia noastra sa poata fi lansata in executie.
+
+Asadar, pentru a distribui o aplicatie poate fi nevoie de kit de instalare specific pentru diverse tipuri de sisteme de operare, si aceste kit-uri de instalare ar trebui actualizate in viitor pentru noile versiuni de sisteme de operare.
+Operatiunile acestea nu sunt banale si daca nu sunt bine facute, riscam sa ajungem in situatia ca aplicatia noastra sa nu mai poata fi executata din cauza kit-ului de instalare neactualizat.
+
+Problema aceasta este o problema generala care tine de cum putem distribui o aplicatie. O solutie eleganta pentru a distribui o aplicatie - si sa nu mai fie nevoie sa ne preocupam de kit-uri de instalare specifice, este `containerizarea` aplicatiei.
+
+`Containerizarea` unei aplicatii, inseamna `'impachetarea'` acesteia impreuna cu pachetele software de care are nevoie aplicatia pentru a putea fi executata.
+
+Exemplul de fata se refera la containerizarea unei aplicatii Python (sysinfo) folosind setul de unelte pus la dispozitie de compania `Doker` si care poate fi instalat usor pe Linux.
+
+Pentru mai multe detalii despre ce inseamna containerizare cu setul de unelte de la `Docker` accesati documentatia: https://docs.docker.com/get-started/
+
+# Configurarea necesara pentru containerizare. Fisierul Dockerfile.
+
+In aplicatia pe care vream sa o containerizam, trebuie adaugat un fisier, in care sa descriem ce container de baza folosim, ce vrem sa contina containerul, comenzile necesare pentru a copia in container directoarele si fisierele relevante, ce program sa se porneasca la pornirea containerului.
+
+Acesta este fisierul: Dockerfile
+
+Se gaseste chiar in directorul 'sysinfo'.
+
+Continutul acestuia si explicatii (textul comentat cu #):.
+
+        FROM python:3.8-alpine                                                       # Containerul de baza folosit
+        
+        ENV FLASK_APP sysinfo                                                        # Setare variabila de environment
+        #ENV FLASK_CONFIG = docker
+        
+        #3.8 booster
+        #RUN useradd -rm -d /home/site -s /bin/bash -g root -G sudo -u 1001 site
+        
+        #3.8 alpine
+        RUN adduser -D sysinfo                                                       # Creare user in container
+        
+        USER sysinfo                                                                 # su sysinfo (schimbare user)
+        
+        WORKDIR /home/sysinfo/                                                       # cd in directorul indicat
+        
+        COPY app app                                                                 # copiez in container app
+        COPY dockerstart.sh dockerstart.sh                                           #   si dockerstart.sh
+        COPY pytest.ini pytest.ini                                                   #   si pytest.ini
+        COPY quickrequirements.txt quickrequirements.txt                             #       -//-
+        COPY sysinfo.py sysinfo.py                                                   #       -//-
+        
+        RUN python3 -m venv .venv                                                    # rulare comanda creare venv in dir .venv
+        RUN .venv/bin/pip install -r quickrequirements.txt                           # rulare comanda instalare dependinte     
+        
+        #WORKDIR /home/sysinfo/app
+        
+        # runtime configuration
+        EXPOSE 5011                                                                  # expunere port 5011 pe care va rula aplicatia
+        ENTRYPOINT ["./dockerstart.sh"]                                              # entrypoint - ce trebuie executat la pornire container
+        #CMD flask run --host 0.0.0.0 -p 5010
+
+# Instalare unelte docker pe calculator
+
+Setul de unelte de la `docker` sa fie disponibil pe calculator.
+
+Pentru instalarea docier pe Ubuntu, consultati documentatia: https://docs.docker.com/desktop/setup/install/linux/ubuntu/
+
+Setul de unelte docker, ar trebui sa poata fi instalat usor, folosind `apt`:
+
+    sudo apt-get update
+    sudo apt-get install ./docker-desktop-amd64.deb
+
+Documentatia indicata la link-ul de mai sus este actualizata de catre compania `docker`. In caz ca comenzile de mai sus nu functioneaza, consultati link-ul.
+
+# Utilizare docker
+
+## Creare imagine container
+
 Dupa crearea Dockerfile, in acelasi director cu acest fisier - pentru acest caz
 site_disribuitor, trebuie executata comanda:
 
@@ -33,8 +109,8 @@ Aceasta creeaza o imagine de container care poate fi vizualizata cu comanda:
       creaza venv-ul, se instaleaza pachetele necesare aplicatiei, se copiaza
       codul aplicatiei - conform Dockerfile
 
-Creare container si executie
-===================
+## Creare container si executie
+
 Pentru a genera un container din fisierul imagine trebuie executata comanda run:
 
     sudo docker run --name sysinfo -p 8020:5011 sysinfo:v01 
@@ -57,8 +133,7 @@ Pentru a genera un container din fisierul imagine trebuie executata comanda run:
                    altfel docker va crea un string aleator si-l va aloca ca nume
                    container-ului pornit
          
-Vizualizare containere
-=======================
+## Vizualizare containere
 
     - vizualizare continere care ruleaza
 
@@ -78,14 +153,14 @@ Vizualizare containere
 
 
 
-Oprire / pornire container - cu aplicatia din container
-=======================================================
+## Oprire / pornire container - cu aplicatia din container
+
     sudo docker stop site
     sudo docker start site
 
 
-Tratare probleme (Debugging)
-=======================================================
+## Tratare probleme (Debugging)
+
 In cazul in care containerul nu porneste poate fi folosita comanda de mai jos pentru a
 crea un container cu imaginea cu probleme care in loc entrypoint-ul configurat va
 folosi shell ca entrypoint.
@@ -93,8 +168,7 @@ folosi shell ca entrypoint.
     docker run -it --rm --entrypoint sh <image:tag>
 
 
-Inspectare container - conectare la container-ul care ruleaza cu shell
-=======================================================
+## Inspectare container - conectare la container-ul care ruleaza cu shell
 
 sudo docker exec -it cchende_sysinfo sh
 
@@ -111,15 +185,14 @@ PID   USER     TIME  COMMAND
 
 
 
-Curatenie - stergere containere / imagini
-=========================================================
+## Curatenie - stergere containere / imagini
 
     sudo docker rm  <container (id, nume)r>
     sudo docker rmi <imagine (id, nume:tag ...)>
 
 
-Adaugare imagine pe Docker Hub.
-=========================================================
+## Adaugare imagine pe Docker Hub.
+
 Pentru a putea partaja containerul, acesta poate fi incarcat pe Docker Hub.
 Aceasta varianta este utila pentru ca permite foarte usor accesul altor persoane.
 
@@ -180,8 +253,8 @@ ex:
 Aceasta comana va downloada imaginea si va porni executia containerului
 
 
-Lista de comenzi docker utile:
-=============================
+## Lista de comenzi docker utile:
+
         Creere container:            sudo docker build -t <nume>:<tag>
         Vizualizare imagini:         sudo docker images
         Vizualizare containere:      sudo docker ps / sudo docker ps -a
